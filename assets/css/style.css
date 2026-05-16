@@ -1,0 +1,166 @@
+/* ============================================================
+   GFM Consult - Custom Styles
+   ============================================================ */
+
+:root {
+  --color-lime: #84cc16;
+  --color-lime-dark: #65a30d;
+  --color-emerald: #10b981;
+  --color-slate-deep: #0f172a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #0f172a;
+  background-color: #ffffff;
+}
+
+/* ===== Scroll Reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Gradient Text ===== */
+.text-gradient {
+  background: linear-gradient(90deg, #65a30d 0%, #10b981 50%, #0f766e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Soft Animated Blob ===== */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  animation: floatBlob 14s ease-in-out infinite;
+}
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -30px) scale(1.08); }
+}
+
+/* ===== Grid Pattern Background ===== */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ===== Hover Lift Card ===== */
+.lift {
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(15, 23, 42, 0.18);
+}
+
+/* ===== Marquee ===== */
+.marquee {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== Custom Scrollbar (subtle) ===== */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #84cc16; }
+
+/* ===== Glass Card ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.glass-dark {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ===== Active Nav Link ===== */
+.nav-link.active {
+  color: #65a30d;
+}
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #84cc16, #10b981);
+  transition: width .3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* ===== Floating Dots Nav (LHMS) ===== */
+.dot-nav-item {
+  width: 10px; height: 10px;
+  border-radius: 9999px;
+  background: #cbd5e1;
+  transition: all .25s ease;
+  display: block;
+}
+.dot-nav-item.active {
+  background: #84cc16;
+  transform: scale(1.35);
+}
+.dot-nav-item:hover { background: #65a30d; }
+
+/* ===== Section padding helpers ===== */
+.section { padding-top: 5rem; padding-bottom: 5rem; }
+@media (min-width: 768px) {
+  .section { padding-top: 7rem; padding-bottom: 7rem; }
+}
+
+/* ===== Tab button active ===== */
+.tab-btn.active {
+  background: #0f172a;
+  color: #ecfccb;
+  border-color: #0f172a;
+}
+
+/* ===== Timeline ===== */
+.timeline-step.active .timeline-dot {
+  background: #84cc16;
+  box-shadow: 0 0 0 6px rgba(132, 204, 22, 0.18);
+}
+.timeline-step.active .timeline-content {
+  border-color: #84cc16;
+}
+
+/* ===== Print/Print Hide ===== */
+@media print {
+  .no-print { display: none !important; }
+}

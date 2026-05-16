@@ -1,0 +1,1870 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GFM Consult — Professional Engineer Consultancy Service</title>
+    <meta
+      name="description"
+      content="PT Geo-Fondasi Multi Konsultan (GFM Consult) — Engineering solutions where uniqueness meets ingenuity. Geotechnical, Green Building, BIM, and Digital Slope Management (LHMS)."
+    />
+    <meta name="theme-color" content="#84cc16" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+            colors: {
+              brand: { lime: "#84cc16", emerald: "#10b981", deep: "#0f172a" },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Alpine.js CDN -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Favicon (inline SVG) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' fill='%2384cc16' font-family='Inter,sans-serif' font-size='28' font-weight='800'%3EG%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+
+  <body class="bg-white text-slate-900 antialiased">
+    <!-- ============================================================
+     NAVBAR
+============================================================ -->
+    <nav
+      x-data="{ open: false, scrolled: false, servicesOpen: false }"
+      x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
+      :class="scrolled ? 'backdrop-blur-md bg-white/80 border-slate-200 shadow-sm' : 'bg-transparent border-transparent'"
+      class="fixed top-0 inset-x-0 z-50 border-b transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+          <!-- Logo -->
+          <a href="#home" class="flex items-center gap-2.5 group">
+            <span
+              class="w-10 h-10 rounded-xl bg-slate-900 grid place-items-center text-lime-400 font-extrabold text-lg shadow-md group-hover:rotate-3 transition-transform"
+              >G</span
+            >
+            <span class="leading-tight">
+              <span class="block font-bold text-slate-900">GFM Consult</span>
+              <span
+                class="block text-[10px] uppercase tracking-widest text-slate-500"
+                >Engineering Consultancy</span
+              >
+            </span>
+          </a>
+
+          <!-- Desktop Menu -->
+          <ul
+            class="hidden lg:flex items-center gap-9 text-sm font-medium text-slate-700"
+          >
+            <li>
+              <a href="#home" class="nav-link" data-section="home">Home</a>
+            </li>
+            <li>
+              <a href="#about" class="nav-link" data-section="about">About</a>
+            </li>
+            <!-- Services Dropdown -->
+            <li
+              class="relative"
+              @mouseenter="servicesOpen = true"
+              @mouseleave="servicesOpen = false"
+            >
+              <button
+                class="nav-link flex items-center gap-1"
+                data-section="services"
+              >
+                Services
+                <svg
+                  class="w-3.5 h-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div
+                x-show="servicesOpen"
+                x-transition.opacity
+                class="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72"
+                style="display: none"
+              >
+                <div
+                  class="bg-white rounded-2xl shadow-xl border border-slate-100 p-2"
+                >
+                  <a
+                    href="#services"
+                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-lime-50 transition"
+                  >
+                    <span
+                      class="w-9 h-9 rounded-lg bg-lime-100 text-lime-700 grid place-items-center text-sm"
+                      >🏗️</span
+                    >
+                    <span
+                      ><span class="block text-sm font-semibold text-slate-900"
+                        >Engineering Service</span
+                      ><span class="block text-xs text-slate-500"
+                        >Design, analysis, BIM</span
+                      ></span
+                    >
+                  </a>
+                  <a
+                    href="#services"
+                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-lime-50 transition"
+                  >
+                    <span
+                      class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center text-sm"
+                      >⛰️</span
+                    >
+                    <span
+                      ><span class="block text-sm font-semibold text-slate-900"
+                        >Geotechnical</span
+                      ><span class="block text-xs text-slate-500"
+                        >Foundation, slope, hazard</span
+                      ></span
+                    >
+                  </a>
+                  <a
+                    href="lhms.html"
+                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-lime-50 transition"
+                  >
+                    <span
+                      class="w-9 h-9 rounded-lg bg-slate-900 text-lime-400 grid place-items-center text-sm"
+                      >📡</span
+                    >
+                    <span
+                      ><span class="block text-sm font-semibold text-slate-900"
+                        >LHMS System →</span
+                      ><span class="block text-xs text-slate-500"
+                        >Landslide Hazard & Monitoring</span
+                      ></span
+                    >
+                  </a>
+                  <a
+                    href="#services"
+                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-lime-50 transition"
+                  >
+                    <span
+                      class="w-9 h-9 rounded-lg bg-green-100 text-green-700 grid place-items-center text-sm"
+                      >🌿</span
+                    >
+                    <span
+                      ><span class="block text-sm font-semibold text-slate-900"
+                        >Green Building</span
+                      ><span class="block text-xs text-slate-500"
+                        >Energy & sustainability</span
+                      ></span
+                    >
+                  </a>
+                  <a
+                    href="#services"
+                    class="flex items-start gap-3 p-3 rounded-xl hover:bg-lime-50 transition"
+                  >
+                    <span
+                      class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 grid place-items-center text-sm"
+                      >📐</span
+                    >
+                    <span
+                      ><span class="block text-sm font-semibold text-slate-900"
+                        >BIM Clinic</span
+                      ><span class="block text-xs text-slate-500"
+                        >Digital construction</span
+                      ></span
+                    >
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="#projects" class="nav-link" data-section="projects"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a href="#team" class="nav-link" data-section="team">Team</a>
+            </li>
+            <li>
+              <a href="lhms.html" class="nav-link text-lime-700 font-semibold"
+                >LHMS</a
+              >
+            </li>
+            <li>
+              <a href="#contact" class="nav-link" data-section="contact"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <!-- CTA Desktop -->
+          <a
+            href="#contact"
+            class="hidden lg:inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            Get a Quote
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button
+            @click="open = !open"
+            :aria-expanded="open"
+            aria-label="Toggle navigation"
+            class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50"
+          >
+            <svg
+              x-show="!open"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <svg
+              x-show="open"
+              style="display: none"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          x-show="open"
+          x-transition
+          style="display: none"
+          class="lg:hidden pb-4"
+        >
+          <ul
+            class="flex flex-col gap-1 bg-white border border-slate-200 rounded-2xl p-3 shadow-lg"
+          >
+            <li>
+              <a
+                @click="open=false"
+                href="#home"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50 text-slate-700 font-medium"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#about"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50 text-slate-700 font-medium"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#services"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50 text-slate-700 font-medium"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#projects"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50 text-slate-700 font-medium"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#team"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50 text-slate-700 font-medium"
+                >Team</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="lhms.html"
+                class="block px-4 py-2.5 rounded-lg bg-slate-900 text-lime-400 font-semibold"
+                >Explore LHMS →</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#contact"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50 text-slate-700 font-medium"
+                >Contact</a
+              >
+            </li>
+            <li class="pt-2">
+              <a
+                @click="open=false"
+                href="#contact"
+                class="block text-center bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-4 py-2.5 rounded-lg"
+                >Get a Quote</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+     HERO
+============================================================ -->
+    <section
+      id="home"
+      class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-grid"
+    >
+      <!-- Soft blobs -->
+      <div class="blob bg-lime-200 w-72 h-72 -top-20 -left-20"></div>
+      <div
+        class="blob bg-emerald-200 w-96 h-96 top-40 -right-32"
+        style="animation-delay: -6s"
+      ></div>
+
+      <div
+        class="relative max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-12 items-center"
+      >
+        <div class="lg:col-span-7 reveal">
+          <span
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-50 border border-lime-200 text-lime-800 text-xs font-semibold tracking-wide"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-lime-500 animate-pulse"
+            ></span>
+            Professional Engineer Consultancy Service
+          </span>
+          <h1
+            class="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
+          >
+            Engineering solutions where
+            <span class="text-gradient">uniqueness</span>
+            meets <span class="text-gradient">ingenuity</span>.
+          </h1>
+          <p class="mt-6 text-lg text-gray-600 max-w-2xl leading-relaxed">
+            PT Geo-Fondasi Multi Konsultan (GFM Consult) delivers tailored
+            consultancy in geotechnical engineering, green building, BIM, and a
+            digital slope management system — built for asset owners who demand
+            precision, safety, and sustainability.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#services"
+              class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-3.5 rounded-full transition-all shadow-lg shadow-slate-900/10"
+            >
+              Explore Services
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+            <a
+              href="lhms.html"
+              class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3.5 rounded-full transition-all"
+            >
+              Explore LHMS
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </a>
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 border border-lime-300 hover:bg-lime-50 text-slate-800 font-semibold px-6 py-3.5 rounded-full transition-all"
+            >
+              Talk to Us
+            </a>
+          </div>
+
+          <!-- Trust strip -->
+          <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <div>
+              <div class="text-3xl font-extrabold text-slate-900">
+                <span data-counter="10" data-suffix="+">0</span>
+              </div>
+              <div class="text-xs uppercase tracking-wider text-slate-500 mt-1">
+                Years Experience
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-slate-900">
+                <span data-counter="120" data-suffix="+">0</span>
+              </div>
+              <div class="text-xs uppercase tracking-wider text-slate-500 mt-1">
+                Projects
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-slate-900">
+                <span data-counter="6">0</span>
+              </div>
+              <div class="text-xs uppercase tracking-wider text-slate-500 mt-1">
+                Service Lines
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-extrabold text-slate-900">
+                <span data-counter="40" data-suffix="+">0</span>
+              </div>
+              <div class="text-xs uppercase tracking-wider text-slate-500 mt-1">
+                Clients
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Mockup -->
+        <div class="lg:col-span-5 reveal">
+          <div class="relative">
+            <div
+              class="absolute -inset-4 bg-gradient-to-br from-lime-200 via-emerald-200 to-transparent rounded-3xl blur-2xl opacity-60"
+            ></div>
+            <div class="relative glass rounded-3xl p-5 shadow-2xl">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span class="ml-3 text-xs text-slate-500 font-medium"
+                  >gfm-consult/lhms · live preview</span
+                >
+              </div>
+              <div class="rounded-2xl bg-white border border-slate-100 p-5">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-xs text-slate-500">Slope Risk Index</p>
+                    <p class="text-2xl font-extrabold text-slate-900">
+                      A-2 · Medium
+                    </p>
+                  </div>
+                  <div
+                    class="w-12 h-12 rounded-full bg-lime-100 grid place-items-center text-lime-700 font-bold"
+                  >
+                    ⛰
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-4">
+                  <div class="rounded-xl bg-lime-50 p-3">
+                    <p class="text-[10px] text-slate-500">Inventory</p>
+                    <p class="font-bold text-slate-900">248</p>
+                  </div>
+                  <div class="rounded-xl bg-emerald-50 p-3">
+                    <p class="text-[10px] text-slate-500">Inspected</p>
+                    <p class="font-bold text-slate-900">182</p>
+                  </div>
+                  <div class="rounded-xl bg-slate-100 p-3">
+                    <p class="text-[10px] text-slate-500">Mitigated</p>
+                    <p class="font-bold text-slate-900">94</p>
+                  </div>
+                </div>
+                <div
+                  class="mt-4 h-24 rounded-xl bg-gradient-to-br from-slate-50 to-lime-50 border border-slate-100 relative overflow-hidden"
+                >
+                  <svg
+                    viewBox="0 0 200 80"
+                    class="absolute inset-0 w-full h-full"
+                  >
+                    <path
+                      d="M0,60 C30,40 50,55 80,35 C110,15 140,45 200,20 L200,80 L0,80 Z"
+                      fill="url(#g1)"
+                    />
+                    <path
+                      d="M0,60 C30,40 50,55 80,35 C110,15 140,45 200,20"
+                      fill="none"
+                      stroke="#65a30d"
+                      stroke-width="2"
+                    />
+                    <defs>
+                      <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                        <stop
+                          offset="0"
+                          stop-color="#84cc16"
+                          stop-opacity=".35"
+                        />
+                        <stop
+                          offset="1"
+                          stop-color="#84cc16"
+                          stop-opacity="0"
+                        />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <a
+                  href="lhms.html"
+                  class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-lime-700 hover:text-lime-800"
+                >
+                  View System →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     ABOUT GFM
+============================================================ -->
+    <section id="about" class="section">
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14 items-center"
+      >
+        <div class="reveal">
+          <div
+            class="relative rounded-3xl overflow-hidden border border-slate-100 shadow-xl"
+          >
+            <div
+              class="aspect-[4/5] bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 p-8 flex flex-col justify-between"
+            >
+              <div>
+                <span
+                  class="text-lime-400 text-xs font-semibold uppercase tracking-widest"
+                  >About GFM</span
+                >
+                <p class="mt-3 text-2xl text-white font-bold leading-snug">
+                  A consultancy where engineering precision meets human-centric
+                  design.
+                </p>
+              </div>
+              <div class="grid grid-cols-2 gap-4 text-white/90">
+                <div
+                  class="rounded-2xl bg-white/5 backdrop-blur p-4 border border-white/10"
+                >
+                  <p class="text-3xl font-extrabold text-lime-400">10+</p>
+                  <p class="text-xs uppercase tracking-wider mt-1">
+                    Years of Expertise
+                  </p>
+                </div>
+                <div
+                  class="rounded-2xl bg-white/5 backdrop-blur p-4 border border-white/10"
+                >
+                  <p class="text-3xl font-extrabold text-lime-400">100%</p>
+                  <p class="text-xs uppercase tracking-wider mt-1">
+                    Tailored Solutions
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >Who We Are</span
+          >
+          <h2
+            class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight"
+          >
+            Specialists in geo-environmental, structural, and digital slope
+            engineering.
+          </h2>
+          <p class="mt-5 text-gray-600 leading-relaxed">
+            GFM Consult is a consultancy firm specializing in geo-environmental,
+            building energy, green building, risk management, architectural
+            design, geotechnical engineering, and digital slope management
+            system solutions. We engineer outcomes that are safe, sustainable,
+            and singularly tailored.
+          </p>
+          <ul class="mt-6 space-y-3 text-slate-700">
+            <li class="flex gap-3">
+              <span
+                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs"
+                >✓</span
+              >
+              Multi-disciplinary engineering team
+            </li>
+            <li class="flex gap-3">
+              <span
+                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs"
+                >✓</span
+              >
+              Proven track record in high-risk infrastructure
+            </li>
+            <li class="flex gap-3">
+              <span
+                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs"
+                >✓</span
+              >
+              Digital monitoring & decision support tools
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     VISION & MISSION
+============================================================ -->
+    <section
+      id="vision"
+      class="section bg-gradient-to-b from-white via-lime-50/40 to-white"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
+            >Our Compass</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            Vision & Mission
+          </h2>
+          <p class="mt-3 text-gray-600">
+            The principles that drive every engagement at GFM Consult.
+          </p>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-2 gap-7">
+          <div
+            class="lift rounded-3xl p-8 md:p-10 bg-white border border-slate-100 shadow-sm reveal"
+          >
+            <div
+              class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 grid place-items-center text-xl"
+            >
+              🎯
+            </div>
+            <h3 class="mt-5 text-xl font-bold text-slate-900">Our Vision</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">
+              Become an Engineering Consultant Where Uniqueness Meets Ingenuity
+              — crafting tailored solutions for a world of infinite
+              possibilities.
+            </p>
+          </div>
+          <div
+            class="lift rounded-3xl p-8 md:p-10 bg-slate-950 text-white reveal"
+          >
+            <div
+              class="w-12 h-12 rounded-2xl bg-lime-400/20 text-lime-300 grid place-items-center text-xl"
+            >
+              🧭
+            </div>
+            <h3 class="mt-5 text-xl font-bold">Our Mission</h3>
+            <ul class="mt-4 space-y-3 text-slate-300">
+              <li class="flex gap-3">
+                <span class="text-lime-400">›</span> Tailored ingenuity and
+                diversity-driven innovation
+              </li>
+              <li class="flex gap-3">
+                <span class="text-lime-400">›</span> Client-centric
+                collaboration
+              </li>
+              <li class="flex gap-3">
+                <span class="text-lime-400">›</span> Sustainable engineering
+                solutions
+              </li>
+              <li class="flex gap-3">
+                <span class="text-lime-400">›</span> Integrity, creativity, and
+                professional excellence
+              </li>
+              <li class="flex gap-3">
+                <span class="text-lime-400">›</span> Creating a legacy of
+                singular excellence in engineering consultancy
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     SERVICES (Tabbed via Alpine)
+============================================================ -->
+    <section id="services" class="section">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >What We Do</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            A full spectrum of engineering services
+          </h2>
+          <p class="mt-3 text-gray-600">
+            Engineering Service, Geotechnical, LHMS, Green Building, and BIM —
+            under one consultancy roof.
+          </p>
+        </div>
+
+        <div x-data="{ tab: 'engineering' }" class="mt-12 reveal">
+          <!-- Tabs -->
+          <div class="flex flex-wrap gap-2 justify-center">
+            <button
+              @click="tab='engineering'"
+              :class="tab==='engineering' ? 'active' : ''"
+              class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+            >
+              Engineering Service
+            </button>
+            <button
+              @click="tab='geotech'"
+              :class="tab==='geotech' ? 'active' : ''"
+              class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+            >
+              Geotechnical Engineering
+            </button>
+            <button
+              @click="tab='lhms'"
+              :class="tab==='lhms' ? 'active' : ''"
+              class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+            >
+              LHMS
+            </button>
+            <button
+              @click="tab='green'"
+              :class="tab==='green' ? 'active' : ''"
+              class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+            >
+              Green Building
+            </button>
+            <button
+              @click="tab='bim'"
+              :class="tab==='bim' ? 'active' : ''"
+              class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+            >
+              BIM Clinic
+            </button>
+          </div>
+
+          <!-- Panels -->
+          <div class="mt-10">
+            <!-- Engineering -->
+            <div
+              x-show="tab==='engineering'"
+              x-transition
+              class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              <template
+                x-for="item in ['Survey & Identification','Design Concept','Building & Architecture Design','Engineering Analysis','Engineering Cost Analysis','Building Information Modeling','Retrofitting Design']"
+              >
+                <div
+                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                >
+                  <div
+                    class="w-10 h-10 rounded-xl bg-lime-100 text-lime-700 grid place-items-center"
+                  >
+                    🏗️
+                  </div>
+                  <p
+                    class="mt-4 font-semibold text-slate-900"
+                    x-text="item"
+                  ></p>
+                </div>
+              </template>
+            </div>
+            <!-- Geotech -->
+            <div
+              x-show="tab==='geotech'"
+              x-transition
+              style="display: none"
+              class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              <template
+                x-for="item in ['In-situ Test','Laboratory Test','Deformation Observation','Geophysical Testing','Foundation Design','Earth Retaining Structure Design','Slope Stability','Ground Improvement Design','Geological Hazard Check','Geological Hazard Map','Geological Hazard Mitigation Suggestion']"
+              >
+                <div
+                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                >
+                  <div
+                    class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center"
+                  >
+                    ⛰️
+                  </div>
+                  <p
+                    class="mt-4 font-semibold text-slate-900"
+                    x-text="item"
+                  ></p>
+                </div>
+              </template>
+            </div>
+            <!-- LHMS -->
+            <div x-show="tab==='lhms'" x-transition style="display: none">
+              <div
+                class="rounded-3xl overflow-hidden bg-slate-950 text-white p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center"
+              >
+                <div>
+                  <span
+                    class="inline-block px-3 py-1 rounded-full bg-lime-400/15 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/30"
+                    >Digital Platform</span
+                  >
+                  <h3 class="mt-4 text-2xl md:text-3xl font-extrabold">
+                    LHMS — Landslide Hazard & Monitoring System
+                  </h3>
+                  <p class="mt-4 text-slate-300 leading-relaxed">
+                    A digital slope management system to help asset owners
+                    maintain, inspect, prioritize, monitor, and mitigate slope
+                    assets through a unified web-based platform.
+                  </p>
+                  <div class="mt-6 flex flex-wrap gap-3">
+                    <a
+                      href="lhms.html"
+                      class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-5 py-3 rounded-full"
+                      >View System →</a
+                    >
+                    <a
+                      href="lhms.html"
+                      class="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white font-semibold px-5 py-3 rounded-full"
+                      >Explore LHMS</a
+                    >
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                  <div
+                    class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                  >
+                    📦
+                    <p class="mt-2 font-semibold">Slope Inventory</p>
+                  </div>
+                  <div
+                    class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                  >
+                    ⚖️
+                    <p class="mt-2 font-semibold">Slope Priority</p>
+                  </div>
+                  <div
+                    class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                  >
+                    🔍
+                    <p class="mt-2 font-semibold">Inspection</p>
+                  </div>
+                  <div
+                    class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                  >
+                    🛡️
+                    <p class="mt-2 font-semibold">Preservation</p>
+                  </div>
+                  <div
+                    class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                  >
+                    🧮
+                    <p class="mt-2 font-semibold">Mitigation Calculate</p>
+                  </div>
+                  <div
+                    class="rounded-2xl bg-white/5 border border-white/10 p-4"
+                  >
+                    🗺️
+                    <p class="mt-2 font-semibold">WebGIS Info</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Green -->
+            <div
+              x-show="tab==='green'"
+              x-transition
+              style="display: none"
+              class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              <template
+                x-for="item in ['Building Energy Analysis','Facade Building Evaluation','Energy Efficiency Conservation Analysis','Daylight Analysis','Glare Analysis']"
+              >
+                <div
+                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                >
+                  <div
+                    class="w-10 h-10 rounded-xl bg-green-100 text-green-700 grid place-items-center"
+                  >
+                    🌿
+                  </div>
+                  <p
+                    class="mt-4 font-semibold text-slate-900"
+                    x-text="item"
+                  ></p>
+                </div>
+              </template>
+            </div>
+            <!-- BIM -->
+            <div
+              x-show="tab==='bim'"
+              x-transition
+              style="display: none"
+              class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              <template
+                x-for="item in ['Digital Construction BIM','Asset and Facility Management','Project Cost Estimation','Scheduling and Fabrication','Sustainability Project Calculation','Retrofitting Design with BIM']"
+              >
+                <div
+                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                >
+                  <div
+                    class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 grid place-items-center"
+                  >
+                    📐
+                  </div>
+                  <p
+                    class="mt-4 font-semibold text-slate-900"
+                    x-text="item"
+                  ></p>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     WHY CHOOSE GFM
+============================================================ -->
+    <section
+      id="why"
+      class="section bg-slate-950 text-white relative overflow-hidden"
+    >
+      <div class="blob bg-lime-500/20 w-96 h-96 -top-20 -left-20"></div>
+      <div
+        class="blob bg-emerald-500/20 w-96 h-96 bottom-0 -right-20"
+        style="animation-delay: -5s"
+      ></div>
+      <div class="relative max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-end">
+          <div class="reveal">
+            <span
+              class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20"
+              >Why GFM</span
+            >
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold">
+              Built for engineering challenges that matter.
+            </h2>
+          </div>
+          <p class="text-slate-300 reveal">
+            Asset owners choose GFM Consult for delivery rigor, digital-first
+            thinking, and a multidisciplinary team that treats every site as a
+            one-of-a-kind problem.
+          </p>
+        </div>
+
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="lift rounded-2xl glass-dark p-6 reveal">
+            <div
+              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
+            >
+              🎯
+            </div>
+            <h4 class="mt-5 font-bold text-lg">Tailored Engineering</h4>
+            <p class="mt-2 text-slate-400 text-sm">
+              Each design is calibrated to ground, climate, and stakeholder
+              context.
+            </p>
+          </div>
+          <div class="lift rounded-2xl glass-dark p-6 reveal">
+            <div
+              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
+            >
+              🔬
+            </div>
+            <h4 class="mt-5 font-bold text-lg">Data-Driven Methods</h4>
+            <p class="mt-2 text-slate-400 text-sm">
+              Field, laboratory, and geophysical evidence guide every decision.
+            </p>
+          </div>
+          <div class="lift rounded-2xl glass-dark p-6 reveal">
+            <div
+              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
+            >
+              🖥️
+            </div>
+            <h4 class="mt-5 font-bold text-lg">Digital Platforms</h4>
+            <p class="mt-2 text-slate-400 text-sm">
+              LHMS, BIM, and GIS integration to keep assets observable
+              end-to-end.
+            </p>
+          </div>
+          <div class="lift rounded-2xl glass-dark p-6 reveal">
+            <div
+              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
+            >
+              🌱
+            </div>
+            <h4 class="mt-5 font-bold text-lg">Sustainable by Design</h4>
+            <p class="mt-2 text-slate-400 text-sm">
+              Green building and energy analysis embedded in every deliverable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     ORGANIZATION STRUCTURE
+============================================================ -->
+    <section id="organization" class="section">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >Inside GFM</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            Organization Structure
+          </h2>
+          <p class="mt-3 text-gray-600">
+            A lean, expert-led structure built to deliver complex projects with
+            clarity.
+          </p>
+        </div>
+
+        <div class="mt-14 reveal">
+          <!-- Top -->
+          <div class="flex justify-center">
+            <div
+              class="rounded-2xl bg-slate-950 text-white px-6 py-5 text-center shadow-xl min-w-[240px]"
+            >
+              <p class="text-xs uppercase tracking-widest text-lime-300">
+                Top Leadership
+              </p>
+              <p class="mt-1 font-bold text-lg">
+                Director / Principal Engineer
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="w-px h-10 bg-slate-300"></div>
+          </div>
+          <!-- Middle -->
+          <div class="flex justify-center">
+            <div
+              class="rounded-2xl bg-white border-2 border-lime-300 px-6 py-4 text-center shadow-md min-w-[240px]"
+            >
+              <p class="text-xs uppercase tracking-widest text-lime-700">
+                Project Lead
+              </p>
+              <p class="mt-1 font-bold text-slate-900">Project Manager</p>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <div class="w-px h-10 bg-slate-300"></div>
+          </div>
+          <!-- Specialists -->
+          <div
+            x-data
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+          >
+            <template
+              x-for="role in [
+          {n:'Geotechnical Engineer',i:'⛰️'},
+          {n:'Structure Engineer',i:'🏛️'},
+          {n:'BIM Specialist',i:'📐'},
+          {n:'Energy Analyst',i:'⚡'},
+          {n:'Inspector / Surveyor',i:'🔎'},
+          {n:'Administration & Support',i:'📋'}
+        ]"
+            >
+              <div
+                class="lift rounded-2xl bg-white border border-slate-100 shadow-sm p-5 text-center"
+              >
+                <div
+                  class="w-11 h-11 rounded-xl bg-lime-50 grid place-items-center text-xl mx-auto"
+                  x-text="role.i"
+                ></div>
+                <p
+                  class="mt-3 font-semibold text-slate-900 text-sm"
+                  x-text="role.n"
+                ></p>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     OUR TEAM
+============================================================ -->
+    <section
+      id="team"
+      class="section bg-gradient-to-b from-white to-lime-50/40"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal"
+        >
+          <div>
+            <span
+              class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
+              >Our People</span
+            >
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+              Meet the team behind every project
+            </h2>
+          </div>
+          <p class="text-gray-600 max-w-md">
+            A multidisciplinary group of engineers, analysts, and digital
+            specialists.
+          </p>
+        </div>
+
+        <div x-data class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <template
+            x-for="(t,i) in [
+        {n:'Malik R.', r:'Principal Engineer', s:'Geotechnical · LHMS', c:'from-lime-100 to-emerald-100'},
+        {n:'Andini P.', r:'Project Manager', s:'Infrastructure · QA/QC', c:'from-emerald-100 to-teal-100'},
+        {n:'Bagas W.', r:'BIM Specialist', s:'Revit · Navisworks', c:'from-slate-100 to-lime-100'},
+        {n:'Rara S.', r:'Energy Analyst', s:'Daylight · EE Conservation', c:'from-yellow-100 to-lime-100'},
+        {n:'Iqbal H.', r:'Structure Engineer', s:'Retrofit · Foundation', c:'from-emerald-100 to-green-100'},
+        {n:'Dhea L.', r:'Inspector', s:'Slope · Field QA', c:'from-lime-100 to-yellow-100'},
+        {n:'Yusuf A.', r:'GIS Engineer', s:'WebGIS · Hazard Map', c:'from-teal-100 to-emerald-100'},
+        {n:'Sinta K.', r:'Admin & Support', s:'Operations', c:'from-slate-100 to-emerald-100'}
+      ]"
+            :key="i"
+          >
+            <div
+              class="lift rounded-3xl bg-white border border-slate-100 shadow-sm overflow-hidden"
+            >
+              <div
+                :class="'aspect-[4/3] bg-gradient-to-br ' + t.c + ' grid place-items-center'"
+              >
+                <div
+                  class="w-20 h-20 rounded-full bg-white/70 backdrop-blur grid place-items-center text-2xl font-bold text-slate-700"
+                  x-text="t.n.split(' ').map(p=>p[0]).join('')"
+                ></div>
+              </div>
+              <div class="p-5">
+                <p class="font-bold text-slate-900" x-text="t.n"></p>
+                <p class="text-sm text-lime-700 font-medium" x-text="t.r"></p>
+                <p class="text-xs text-slate-500 mt-1" x-text="t.s"></p>
+                <div class="mt-4 flex gap-2 text-slate-400">
+                  <a
+                    href="#"
+                    aria-label="LinkedIn"
+                    class="w-8 h-8 grid place-items-center rounded-lg border border-slate-200 hover:border-lime-400 hover:text-lime-700"
+                    >in</a
+                  >
+                  <a
+                    href="#"
+                    aria-label="Email"
+                    class="w-8 h-8 grid place-items-center rounded-lg border border-slate-200 hover:border-lime-400 hover:text-lime-700"
+                    >@</a
+                  >
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     HIGHLIGHT LHMS BANNER
+============================================================ -->
+    <section id="lhms-banner" class="section">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div
+          class="relative overflow-hidden rounded-3xl bg-slate-950 text-white p-8 md:p-14 reveal"
+        >
+          <div class="blob bg-lime-500/30 w-96 h-96 -top-20 -right-20"></div>
+          <div
+            class="blob bg-emerald-500/20 w-72 h-72 bottom-0 -left-10"
+            style="animation-delay: -4s"
+          ></div>
+          <div class="relative grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <span
+                class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20"
+                >Digital Monitoring System</span
+              >
+              <h2
+                class="mt-4 text-3xl md:text-4xl font-extrabold leading-tight"
+              >
+                Manage every slope asset with
+                <span class="text-lime-400">LHMS</span>.
+              </h2>
+              <p class="mt-4 text-slate-300 max-w-xl">
+                Inventory, prioritize, inspect, preserve, and mitigate — all in
+                one platform with WebGIS-based slope information and decision
+                support.
+              </p>
+              <div class="mt-7 flex flex-wrap gap-3">
+                <a
+                  href="lhms.html"
+                  class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3 rounded-full"
+                  >Explore LHMS →</a
+                >
+                <a
+                  href="lhms.html"
+                  class="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white font-semibold px-6 py-3 rounded-full"
+                  >View System</a
+                >
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="text-xs text-lime-300">Module</p>
+                <p class="mt-1 font-bold">Slope Inventory</p>
+              </div>
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="text-xs text-lime-300">Module</p>
+                <p class="mt-1 font-bold">Slope Priority</p>
+              </div>
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="text-xs text-lime-300">Module</p>
+                <p class="mt-1 font-bold">Inspection</p>
+              </div>
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="text-xs text-lime-300">Module</p>
+                <p class="mt-1 font-bold">Preservation</p>
+              </div>
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="text-xs text-lime-300">Module</p>
+                <p class="mt-1 font-bold">Mitigation Calculate</p>
+              </div>
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <p class="text-xs text-lime-300">Module</p>
+                <p class="mt-1 font-bold">Slope Information</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     PROJECTS (Filter + Modal)
+============================================================ -->
+    <section
+      id="projects"
+      class="section bg-white"
+      x-data="{
+    filter: 'all',
+    modal: null,
+    projects: [
+      {id:1, title:'Geotechnic Analysis - Quay Wall & Wharf', client:'PT Graha Survei Indonesia (for PT Kideco Jaya Agung)', year:2025, cat:'geotech', desc:'Jasa Analisa Geotechnic Quay Wall dan Wharf PT Kideco Jaya Agung. Comprehensive geotechnical analysis for port infrastructure.'},
+      {id:2, title:'Landslide Handling - Cinere–Serpong Tollway', client:'PT Waskita Karya', year:2025, cat:'slope', desc:'Jasa Penanganan Longsoran Jalan Tol Cinere – Serpong. Slope failure assessment and mitigation engineering.'},
+      {id:3, title:'Landslide Handling - Semarang Tollway KM 430 C/A', client:'PT Jasamarga Tollroad Maintenance', year:2025, cat:'slope', desc:'Jasa Penanganan Longsoran Jalan Tol Semarang KM 430 C/A. Geotechnical mitigation along active tollway.'},
+      {id:4, title:'Geotechnic Analysis - IKN Access Road', client:'PT Bangun Cipta – Panca Karya KSO', year:2025, cat:'geotech', desc:'Jasa Analisa Geotechnic untuk Pembangunan Jalan Akses di IKN. Subsurface investigation and design recommendations.'},
+      {id:5, title:'Slope Reinforcement Supervision - Semarang–Batang', client:'PT Jasamarga Tollroad Maintenance — PT JTSB', year:2025, cat:'slope', desc:'Jasa Pendampingan Teknis Pelaksanaan Perkuatan Lereng Jalan Tol Semarang - Batang.'},
+      {id:6, title:'Slake Durability Testing', client:'PT Adhi Karya', year:2025, cat:'lab', desc:'Jasa Pengujian Slake Durability. Laboratory testing for rock durability evaluation.'}
+    ]
+  }"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal"
+        >
+          <div>
+            <span
+              class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+              >Recent Work</span
+            >
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+              Projects we’re proud of
+            </h2>
+          </div>
+          <!-- Filters -->
+          <div class="flex flex-wrap gap-2">
+            <button
+              @click="filter='all'"
+              :class="filter==='all' ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700 border-slate-200'"
+              class="px-4 py-2 rounded-full text-sm font-semibold border transition"
+            >
+              All
+            </button>
+            <button
+              @click="filter='geotech'"
+              :class="filter==='geotech' ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700 border-slate-200'"
+              class="px-4 py-2 rounded-full text-sm font-semibold border transition"
+            >
+              Geotechnical
+            </button>
+            <button
+              @click="filter='slope'"
+              :class="filter==='slope' ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700 border-slate-200'"
+              class="px-4 py-2 rounded-full text-sm font-semibold border transition"
+            >
+              Slope
+            </button>
+            <button
+              @click="filter='lab'"
+              :class="filter==='lab' ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-700 border-slate-200'"
+              class="px-4 py-2 rounded-full text-sm font-semibold border transition"
+            >
+              Laboratory
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <template
+            x-for="p in projects.filter(p => filter==='all' || p.cat===filter)"
+            :key="p.id"
+          >
+            <button
+              @click="modal = p"
+              class="text-left lift rounded-3xl overflow-hidden bg-white border border-slate-100 shadow-sm"
+            >
+              <div
+                class="aspect-[16/10] relative overflow-hidden bg-gradient-to-br from-slate-100 to-lime-100"
+              >
+                <div
+                  class="absolute inset-0 grid place-items-center text-6xl opacity-70"
+                  x-text="p.cat==='geotech'?'⛰️':p.cat==='slope'?'🏔️':'🧪'"
+                ></div>
+                <div
+                  class="absolute top-3 left-3 inline-flex items-center gap-2 bg-white/90 backdrop-blur rounded-full px-3 py-1 text-xs font-semibold text-slate-700"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-lime-500"></span>
+                  <span x-text="p.year"></span>
+                </div>
+              </div>
+              <div class="p-5">
+                <p
+                  class="text-xs uppercase tracking-wider text-lime-700 font-semibold"
+                  x-text="p.cat"
+                ></p>
+                <h3
+                  class="mt-1 font-bold text-slate-900 leading-snug"
+                  x-text="p.title"
+                ></h3>
+                <p class="mt-2 text-sm text-gray-600" x-text="p.client"></p>
+                <span
+                  class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-slate-900"
+                  >View Details →</span
+                >
+              </div>
+            </button>
+          </template>
+        </div>
+
+        <!-- Modal -->
+        <div
+          x-show="modal"
+          x-transition.opacity
+          style="display: none"
+          @keydown.escape.window="modal=null"
+          class="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm grid place-items-center p-4"
+        >
+          <div
+            @click.outside="modal=null"
+            class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden"
+          >
+            <div
+              class="aspect-[16/8] bg-gradient-to-br from-slate-900 to-emerald-900 grid place-items-center text-white"
+            >
+              <span
+                class="text-6xl"
+                x-text="modal && (modal.cat==='geotech'?'⛰️':modal.cat==='slope'?'🏔️':'🧪')"
+              ></span>
+            </div>
+            <div class="p-7">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p
+                    class="text-xs uppercase tracking-wider text-lime-700 font-semibold"
+                    x-text="modal?.cat"
+                  ></p>
+                  <h3
+                    class="mt-1 text-xl font-bold text-slate-900"
+                    x-text="modal?.title"
+                  ></h3>
+                </div>
+                <button
+                  @click="modal=null"
+                  aria-label="Close modal"
+                  class="w-9 h-9 rounded-full border border-slate-200 hover:bg-slate-50 grid place-items-center"
+                >
+                  ✕
+                </button>
+              </div>
+              <div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm">
+                <div class="rounded-xl bg-slate-50 p-4">
+                  <p class="text-slate-500">Client</p>
+                  <p
+                    class="font-semibold text-slate-900"
+                    x-text="modal?.client"
+                  ></p>
+                </div>
+                <div class="rounded-xl bg-slate-50 p-4">
+                  <p class="text-slate-500">Year</p>
+                  <p
+                    class="font-semibold text-slate-900"
+                    x-text="modal?.year"
+                  ></p>
+                </div>
+              </div>
+              <p
+                class="mt-5 text-gray-600 leading-relaxed"
+                x-text="modal?.desc"
+              ></p>
+              <a
+                href="#contact"
+                @click="modal=null"
+                class="mt-6 inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-5 py-3 rounded-full"
+                >Discuss a Similar Project →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     CLIENTS / TESTIMONIALS
+============================================================ -->
+    <section
+      id="clients"
+      class="section bg-gradient-to-b from-lime-50/40 to-white"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >Trusted By</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            Working alongside national contractors
+          </h2>
+        </div>
+
+        <div class="mt-10 overflow-hidden">
+          <div x-data class="marquee items-center">
+            <template
+              x-for="c in ['PT Jasamarga','PT Waskita Karya','PT Adhi Karya','PT Graha Survei Indonesia','PT Bangun Cipta','PT Kideco Jaya Agung','PT JTSB','Panca Karya KSO']"
+            >
+              <div
+                class="shrink-0 px-8 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm font-bold text-slate-700 tracking-wide"
+                x-text="c"
+              ></div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Testimonial Slider -->
+        <div
+          x-data="{ i: 0, items: [
+      {q:'GFM delivered a precise geotechnical analysis on a tight schedule. Their reports were practical and decision-ready.', n:'Project Lead', c:'National Tollway Operator'},
+      {q:'The LHMS platform changed how we prioritize slope inspections across our network.', n:'Asset Manager', c:'Infrastructure Maintenance'},
+      {q:'Excellent multidisciplinary team — geotech, structure, and BIM under one roof.', n:'Engineering Director', c:'EPC Contractor'}
+    ] }"
+          class="mt-14 max-w-3xl mx-auto reveal"
+        >
+          <div
+            class="rounded-3xl bg-white border border-slate-100 shadow-sm p-8 md:p-10 text-center"
+          >
+            <span class="text-5xl text-lime-300 leading-none">“</span>
+            <p
+              class="mt-3 text-lg md:text-xl text-slate-800 leading-relaxed"
+              x-text="items[i].q"
+            ></p>
+            <div class="mt-6">
+              <p class="font-bold text-slate-900" x-text="items[i].n"></p>
+              <p class="text-sm text-gray-500" x-text="items[i].c"></p>
+            </div>
+          </div>
+          <div class="mt-5 flex items-center justify-center gap-3">
+            <button
+              @click="i = (i - 1 + items.length) % items.length"
+              aria-label="Previous testimonial"
+              class="w-10 h-10 rounded-full border border-slate-200 hover:bg-slate-50"
+            >
+              ‹
+            </button>
+            <template x-for="(_,idx) in items" :key="idx">
+              <button
+                @click="i=idx"
+                :class="i===idx ? 'bg-lime-500 w-6' : 'bg-slate-300 w-2'"
+                class="h-2 rounded-full transition-all"
+              ></button>
+            </template>
+            <button
+              @click="i = (i + 1) % items.length"
+              aria-label="Next testimonial"
+              class="w-10 h-10 rounded-full border border-slate-200 hover:bg-slate-50"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     FAQ
+============================================================ -->
+    <section id="faq" class="section">
+      <div class="max-w-4xl mx-auto px-5 lg:px-8">
+        <div class="text-center reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
+            >FAQ</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            Frequently asked questions
+          </h2>
+        </div>
+
+        <div x-data="{ open: 0 }" class="mt-10 space-y-3 reveal">
+          <template
+            x-for="(f,idx) in [
+        {q:'What services does GFM Consult provide?', a:'Engineering Service, Geotechnical Engineering, LHMS, Green Building, BIM Clinic, and Professional Engineer Consultancy.'},
+        {q:'Does GFM handle high-risk slope projects?', a:'Yes. Our team has executed slope handling on national tollways including Cinere–Serpong and Semarang corridors.'},
+        {q:'What is LHMS?', a:'A digital slope management system for asset owners to inventory, prioritize, inspect, preserve, and mitigate slope assets via a web-based platform.'},
+        {q:'Do you provide BIM and energy analysis?', a:'Yes. Our BIM Clinic and Green Building service lines cover digital construction, energy, daylight, and glare analysis.'},
+        {q:'How can we engage GFM for a project?', a:'Reach us via the contact section below. We respond to RFQs and consultation requests within 1–2 business days.'}
+      ]"
+            :key="idx"
+          >
+            <div
+              class="rounded-2xl border border-slate-200 bg-white overflow-hidden"
+            >
+              <button
+                @click="open = (open===idx ? -1 : idx)"
+                class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+              >
+                <span class="font-semibold text-slate-900" x-text="f.q"></span>
+                <span
+                  class="w-8 h-8 rounded-full bg-lime-100 text-lime-700 grid place-items-center transition-transform"
+                  :class="open===idx ? 'rotate-45' : ''"
+                  >+</span
+                >
+              </button>
+              <div
+                x-show="open===idx"
+                x-collapse
+                class="px-5 pb-5 text-gray-600"
+                x-text="f.a"
+              ></div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     CONTACT
+============================================================ -->
+    <section
+      id="contact"
+      class="section bg-slate-950 text-white relative overflow-hidden"
+    >
+      <div class="blob bg-lime-500/25 w-96 h-96 -top-20 right-0"></div>
+      <div
+        class="relative max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-12"
+      >
+        <div class="reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20"
+            >Contact</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold">
+            Let’s engineer something exceptional.
+          </h2>
+          <p class="mt-4 text-slate-300 max-w-lg">
+            Reach out for project consultation, RFQs, or to learn how LHMS can
+            support your slope asset management.
+          </p>
+
+          <div class="mt-10 grid sm:grid-cols-2 gap-4">
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <p class="text-xs uppercase tracking-wider text-lime-300">
+                Office 1
+              </p>
+              <p class="mt-2 text-sm text-slate-200 leading-relaxed">
+                Jl. Temugiring 2 Villa Mas Cluster, No 1 RT 003/004, Banyumanik,
+                Kota Semarang
+              </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <p class="text-xs uppercase tracking-wider text-lime-300">
+                Office 2
+              </p>
+              <p class="mt-2 text-sm text-slate-200 leading-relaxed">
+                Jl. Indraprasta No.74, Pendrikan Kidul, Kec. Semarang Tengah,
+                Kota Semarang, Jawa Tengah 50131
+              </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <p class="text-xs uppercase tracking-wider text-lime-300">
+                Phone
+              </p>
+              <a
+                href="tel:+6282135057849"
+                class="mt-2 block text-sm text-white font-semibold hover:text-lime-300"
+                >082 135 057 849</a
+              >
+            </div>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <p class="text-xs uppercase tracking-wider text-lime-300">
+                Email
+              </p>
+              <a
+                href="mailto:malik@gfm-consult.com"
+                class="mt-2 block text-sm text-white font-semibold hover:text-lime-300 break-all"
+                >malik@gfm-consult.com</a
+              >
+            </div>
+            <div
+              class="rounded-2xl bg-white/5 border border-white/10 p-5 sm:col-span-2"
+            >
+              <p class="text-xs uppercase tracking-wider text-lime-300">
+                Instagram
+              </p>
+              <a
+                href="https://instagram.com/Gfm.consult"
+                target="_blank"
+                rel="noopener"
+                class="mt-2 block text-sm text-white font-semibold hover:text-lime-300"
+                >@Gfm.consult</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form
+          @submit.prevent="window.location='mailto:malik@gfm-consult.com'"
+          class="reveal rounded-3xl bg-white text-slate-900 p-7 md:p-9 shadow-2xl"
+        >
+          <h3 class="text-xl font-bold">Send us a message</h3>
+          <p class="text-sm text-gray-500 mt-1">
+            We typically respond within 1–2 business days.
+          </p>
+          <div class="mt-6 space-y-4">
+            <div>
+              <label class="text-xs font-semibold text-slate-700">Name</label>
+              <input
+                required
+                type="text"
+                class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-lime-500 focus:ring-2 focus:ring-lime-100"
+                placeholder="Your full name"
+              />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-700">Email</label>
+              <input
+                required
+                type="email"
+                class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-lime-500 focus:ring-2 focus:ring-lime-100"
+                placeholder="you@company.com"
+              />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-700"
+                >Subject</label
+              >
+              <input
+                type="text"
+                class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-lime-500 focus:ring-2 focus:ring-lime-100"
+                placeholder="Project / inquiry"
+              />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-700"
+                >Message</label
+              >
+              <textarea
+                required
+                rows="4"
+                class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3 focus:outline-none focus:border-lime-500 focus:ring-2 focus:ring-lime-100"
+                placeholder="Tell us about your project..."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold py-3 rounded-xl transition"
+            >
+              Send Message →
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     FOOTER
+============================================================ -->
+    <footer class="bg-slate-950 text-slate-300 border-t border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-8 py-14 grid md:grid-cols-4 gap-10"
+      >
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <span
+              class="w-10 h-10 rounded-xl bg-lime-400 grid place-items-center text-slate-950 font-extrabold text-lg"
+              >G</span
+            >
+            <span class="leading-tight">
+              <span class="block font-bold text-white">GFM Consult</span>
+              <span
+                class="block text-[10px] uppercase tracking-widest text-slate-400"
+                >PT Geo-Fondasi Multi Konsultan</span
+              >
+            </span>
+          </div>
+          <p class="mt-5 text-sm text-slate-400 max-w-md leading-relaxed">
+            Professional engineer consultancy service. Geotechnical, green
+            building, BIM, and digital slope management — engineered for asset
+            owners.
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">Navigate</p>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href="#about" class="hover:text-lime-400">About</a></li>
+            <li>
+              <a href="#services" class="hover:text-lime-400">Services</a>
+            </li>
+            <li>
+              <a href="#projects" class="hover:text-lime-400">Projects</a>
+            </li>
+            <li>
+              <a href="lhms.html" class="hover:text-lime-400">LHMS System</a>
+            </li>
+            <li><a href="#contact" class="hover:text-lime-400">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">Get in touch</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-400">
+            <li>Semarang, Indonesia</li>
+            <li>
+              <a href="tel:+6282135057849" class="hover:text-lime-400"
+                >082 135 057 849</a
+              >
+            </li>
+            <li>
+              <a href="mailto:malik@gfm-consult.com" class="hover:text-lime-400"
+                >malik@gfm-consult.com</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/Gfm.consult"
+                target="_blank"
+                rel="noopener"
+                class="hover:text-lime-400"
+                >@Gfm.consult</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div
+          class="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500"
+        >
+          <p>
+            © <span id="year">2025</span> PT Geo-Fondasi Multi Konsultan. All
+            rights reserved.
+          </p>
+          <p>Engineering solutions where uniqueness meets ingenuity.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+     FLOATING UI : Back-to-top + WhatsApp
+============================================================ -->
+    <div
+      x-data="{ show: false }"
+      x-init="window.addEventListener('scroll', () => show = window.scrollY > 600)"
+      class="fixed bottom-6 right-5 z-40 flex flex-col items-end gap-3 no-print"
+    >
+      <a
+        href="https://wa.me/6282135057849"
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp GFM"
+        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg hover:shadow-xl transition-all"
+      >
+        <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
+          <path
+            d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.53 0 .22 5.3.22 11.83c0 2.08.55 4.11 1.6 5.9L0 24l6.4-1.68a11.81 11.81 0 0 0 5.66 1.44h.01c6.53 0 11.83-5.3 11.83-11.83a11.74 11.74 0 0 0-3.38-8.45ZM12.07 21.7h-.01a9.84 9.84 0 0 1-5.02-1.38l-.36-.21-3.8 1 1.02-3.7-.24-.38a9.83 9.83 0 1 1 18.23-5.2 9.83 9.83 0 0 1-9.82 9.87Zm5.4-7.36c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07a8.1 8.1 0 0 1-2.39-1.47 8.92 8.92 0 0 1-1.65-2.06c-.17-.3 0-.46.13-.6.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.5.07-.77.37-.27.3-1.02 1-1.02 2.43 0 1.44 1.05 2.83 1.2 3.03.15.2 2.06 3.16 5 4.43.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.41-.07-.12-.27-.2-.57-.34Z"
+          />
+        </svg>
+      </a>
+      <button
+        x-show="show"
+        x-transition
+        @click="window.scrollTo({top:0, behavior:'smooth'})"
+        aria-label="Back to top"
+        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 hover:bg-slate-800 text-lime-400 shadow-lg hover:shadow-xl transition-all"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 15l7-7 7 7"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
