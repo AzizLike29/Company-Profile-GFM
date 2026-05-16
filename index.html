@@ -42,11 +42,10 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/style.css" />
 
-    <!-- Favicon (inline SVG) -->
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' fill='%2384cc16' font-family='Inter,sans-serif' font-size='28' font-weight='800'%3EG%3C/text%3E%3C/svg%3E"
-    />
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/icons/company-gfm.jpeg" />
+    <link rel="shortcut icon" type="image/jpeg" href="assets/icons/company-gfm.jpeg" />
+    <link rel="apple-touch-icon" href="assets/icons/company-gfm.jpeg" />
   </head>
 
   <body class="bg-white text-slate-900 antialiased">
@@ -64,9 +63,14 @@
           <!-- Logo -->
           <a href="#home" class="flex items-center gap-2.5 group">
             <span
-              class="w-10 h-10 rounded-xl bg-slate-900 grid place-items-center text-lime-400 font-extrabold text-lg shadow-md group-hover:rotate-3 transition-transform"
-              >G</span
+              class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-slate-200 inline-flex items-center justify-center shadow-md group-hover:rotate-3 transition-transform overflow-hidden"
             >
+              <img
+                src="assets/icons/company-gfm.jpeg"
+                alt="GFM Consult logo"
+                class="w-full h-full object-contain"
+              />
+            </span>
             <span class="leading-tight">
               <span class="block font-bold text-slate-900">GFM Consult</span>
               <span
@@ -594,8 +598,12 @@
                   >About GFM</span
                 >
                 <p class="mt-3 text-2xl text-white font-bold leading-snug">
-                  A consultancy where engineering precision meets human-centric
-                  design.
+                  A civil engineering consultancy where geo-engineering
+                  expertise meets construction digitalization.
+                </p>
+                <p class="mt-3 text-sm text-white/70 leading-relaxed">
+                  Trusted partner in delivering safe, sustainable, and
+                  future-ready infrastructure solutions.
                 </p>
               </div>
               <div class="grid grid-cols-2 gap-4 text-white/90">
@@ -627,39 +635,83 @@
           <h2
             class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight"
           >
-            Specialists in geo-environmental, structural, and digital slope
-            engineering.
+            Civil engineering consultancy specializing in
+            <span class="text-gradient">Geo-Engineering</span> and
+            <span class="text-gradient">Construction Digitalization</span>.
           </h2>
           <p class="mt-5 text-gray-600 leading-relaxed">
-            GFM Consult is a consultancy firm specializing in geo-environmental,
-            building energy, green building, risk management, architectural
-            design, geotechnical engineering, and digital slope management
-            system solutions. We engineer outcomes that are safe, sustainable,
-            and singularly tailored.
+            GFM is a civil engineering consulting firm with extensive
+            experience in geological and geotechnical engineering — covering
+            landslide assessment and mitigation, slope stability, geotechnical
+            investigation, ground improvement, and infrastructure planning.
+            Every project is approached as a unique challenge, and every
+            solution is tailored to the specific conditions and objectives of
+            our clients.
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Beyond geotechnical services, GFM supports the digital
+            transformation of the construction industry through Building
+            Information Modeling (BIM) and complements it with Green Building
+            services — including building energy analysis and lighting design
+            — for energy-efficient, environmentally responsible development.
           </p>
           <ul class="mt-6 space-y-3 text-slate-700">
             <li class="flex gap-3">
               <span
-                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs"
+                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs flex-shrink-0"
                 >✓</span
               >
-              Multi-disciplinary engineering team
+              Tailored geotechnical &amp; infrastructure engineering solutions
             </li>
             <li class="flex gap-3">
               <span
-                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs"
+                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs flex-shrink-0"
                 >✓</span
               >
-              Proven track record in high-risk infrastructure
+              BIM-driven coordination and construction digitalization
             </li>
             <li class="flex gap-3">
               <span
-                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs"
+                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs flex-shrink-0"
                 >✓</span
               >
-              Digital monitoring & decision support tools
+              Green building &amp; sustainable engineering practices
+            </li>
+            <li class="flex gap-3">
+              <span
+                class="w-6 h-6 rounded-full bg-lime-100 text-lime-700 grid place-items-center text-xs flex-shrink-0"
+                >✓</span
+              >
+              Responsive, client-oriented collaboration in every project stage
             </li>
           </ul>
+
+          <!-- TODO: Replace href with brochure file path when available, for example: download/company-profile-brochure.pdf -->
+          <div class="mt-8">
+            <a
+              href="#"
+              class="brochure-btn inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-all"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+                />
+              </svg>
+              Download Brochure
+            </a>
+            <p class="mt-2 text-xs text-slate-500">
+              Company profile in PDF — coming soon.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -830,7 +882,7 @@
               class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
               <template
-                x-for="item in ['In-situ Test','Laboratory Test','Deformation Observation','Geophysical Testing','Foundation Design','Earth Retaining Structure Design','Slope Stability','Ground Improvement Design','Geological Hazard Check','Geological Hazard Map','Geological Hazard Mitigation Suggestion']"
+                x-for="item in ['In-situ Test','Laboratory Test','Deformation Observation','Geophysical Testing','Foundation Design','Earth Retaining Structure Design','Slope Stability','Ground Improvement Design']"
               >
                 <div
                   class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
@@ -974,87 +1026,6 @@
     </section>
 
     <!-- ============================================================
-     WHY CHOOSE GFM
-============================================================ -->
-    <section
-      id="why"
-      class="section bg-slate-950 text-white relative overflow-hidden"
-    >
-      <div class="blob bg-lime-500/20 w-96 h-96 -top-20 -left-20"></div>
-      <div
-        class="blob bg-emerald-500/20 w-96 h-96 bottom-0 -right-20"
-        style="animation-delay: -5s"
-      ></div>
-      <div class="relative max-w-7xl mx-auto px-5 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-end">
-          <div class="reveal">
-            <span
-              class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20"
-              >Why GFM</span
-            >
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold">
-              Built for engineering challenges that matter.
-            </h2>
-          </div>
-          <p class="text-slate-300 reveal">
-            Asset owners choose GFM Consult for delivery rigor, digital-first
-            thinking, and a multidisciplinary team that treats every site as a
-            one-of-a-kind problem.
-          </p>
-        </div>
-
-        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div class="lift rounded-2xl glass-dark p-6 reveal">
-            <div
-              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
-            >
-              🎯
-            </div>
-            <h4 class="mt-5 font-bold text-lg">Tailored Engineering</h4>
-            <p class="mt-2 text-slate-400 text-sm">
-              Each design is calibrated to ground, climate, and stakeholder
-              context.
-            </p>
-          </div>
-          <div class="lift rounded-2xl glass-dark p-6 reveal">
-            <div
-              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
-            >
-              🔬
-            </div>
-            <h4 class="mt-5 font-bold text-lg">Data-Driven Methods</h4>
-            <p class="mt-2 text-slate-400 text-sm">
-              Field, laboratory, and geophysical evidence guide every decision.
-            </p>
-          </div>
-          <div class="lift rounded-2xl glass-dark p-6 reveal">
-            <div
-              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
-            >
-              🖥️
-            </div>
-            <h4 class="mt-5 font-bold text-lg">Digital Platforms</h4>
-            <p class="mt-2 text-slate-400 text-sm">
-              LHMS, BIM, and GIS integration to keep assets observable
-              end-to-end.
-            </p>
-          </div>
-          <div class="lift rounded-2xl glass-dark p-6 reveal">
-            <div
-              class="w-12 h-12 rounded-xl bg-lime-400/15 text-lime-300 grid place-items-center text-xl"
-            >
-              🌱
-            </div>
-            <h4 class="mt-5 font-bold text-lg">Sustainable by Design</h4>
-            <p class="mt-2 text-slate-400 text-sm">
-              Green building and energy analysis embedded in every deliverable.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
      ORGANIZATION STRUCTURE
 ============================================================ -->
     <section id="organization" class="section">
@@ -1163,52 +1134,74 @@
           </p>
         </div>
 
-        <div x-data class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <template
-            x-for="(t,i) in [
-        {n:'Malik R.', r:'Principal Engineer', s:'Geotechnical · LHMS', c:'from-lime-100 to-emerald-100'},
-        {n:'Andini P.', r:'Project Manager', s:'Infrastructure · QA/QC', c:'from-emerald-100 to-teal-100'},
-        {n:'Bagas W.', r:'BIM Specialist', s:'Revit · Navisworks', c:'from-slate-100 to-lime-100'},
-        {n:'Rara S.', r:'Energy Analyst', s:'Daylight · EE Conservation', c:'from-yellow-100 to-lime-100'},
-        {n:'Iqbal H.', r:'Structure Engineer', s:'Retrofit · Foundation', c:'from-emerald-100 to-green-100'},
-        {n:'Dhea L.', r:'Inspector', s:'Slope · Field QA', c:'from-lime-100 to-yellow-100'},
-        {n:'Yusuf A.', r:'GIS Engineer', s:'WebGIS · Hazard Map', c:'from-teal-100 to-emerald-100'},
-        {n:'Sinta K.', r:'Admin & Support', s:'Operations', c:'from-slate-100 to-emerald-100'}
-      ]"
-            :key="i"
-          >
-            <div
-              class="lift rounded-3xl bg-white border border-slate-100 shadow-sm overflow-hidden"
-            >
-              <div
-                :class="'aspect-[4/3] bg-gradient-to-br ' + t.c + ' grid place-items-center'"
-              >
-                <div
-                  class="w-20 h-20 rounded-full bg-white/70 backdrop-blur grid place-items-center text-2xl font-bold text-slate-700"
-                  x-text="t.n.split(' ').map(p=>p[0]).join('')"
-                ></div>
-              </div>
-              <div class="p-5">
-                <p class="font-bold text-slate-900" x-text="t.n"></p>
-                <p class="text-sm text-lime-700 font-medium" x-text="t.r"></p>
-                <p class="text-xs text-slate-500 mt-1" x-text="t.s"></p>
-                <div class="mt-4 flex gap-2 text-slate-400">
-                  <a
-                    href="#"
-                    aria-label="LinkedIn"
-                    class="w-8 h-8 grid place-items-center rounded-lg border border-slate-200 hover:border-lime-400 hover:text-lime-700"
-                    >in</a
-                  >
-                  <a
-                    href="#"
-                    aria-label="Email"
-                    class="w-8 h-8 grid place-items-center rounded-lg border border-slate-200 hover:border-lime-400 hover:text-lime-700"
-                    >@</a
-                  >
-                </div>
-              </div>
+        <div class="team-grid mt-12">
+          <!-- Advisor -->
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <span class="team-badge">Advisor</span>
+              <img
+                src="assets/img/ADVISOR.png"
+                alt="Ir. Muhrozi MS — Geotechnical Advisor"
+                loading="lazy"
+              />
             </div>
-          </template>
+            <div class="team-body">
+              <p class="team-name">Ir. Muhrozi MS</p>
+              <p class="team-role">Geotechnical Advisor</p>
+              <p class="team-desc">
+                Senior geotechnical professional with 35+ years of experience
+                across major toll road and infrastructure projects in
+                Indonesia. Expert in slope stability assessment and mitigation,
+                foundation engineering, and deep excavation design.
+              </p>
+            </div>
+          </article>
+
+          <!-- CEO -->
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <span class="team-badge is-primary">CEO</span>
+              <img
+                src="assets/img/CEO.jpeg"
+                alt="Ir. Goji Pamungkas — Chief Executive Officer"
+                loading="lazy"
+              />
+            </div>
+            <div class="team-body">
+              <p class="team-name">Ir. Goji Pamungkas, M.T., IPM, ACPE</p>
+              <p class="team-role">Chief Executive Officer</p>
+              <p class="team-desc">
+                Civil engineering professional with 10+ years in engineering
+                consultancy, specializing in slope management, slope
+                reinforcement, and stabilization engineering. LARAM 2025
+                participant (The University of Hong Kong) with additional
+                expertise in Green Building practices.
+              </p>
+            </div>
+          </article>
+
+          <!-- CTO -->
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <span class="team-badge is-emerald">CTO</span>
+              <img
+                src="assets/img/CTO.jpeg"
+                alt="Malik Maulana — Chief Technology Officer"
+                loading="lazy"
+              />
+            </div>
+            <div class="team-body">
+              <p class="team-name">Malik Maulana, S.TrT., M.T.</p>
+              <p class="team-role">Chief Technology Officer</p>
+              <p class="team-desc">
+                Technology-driven engineer with 6+ years in the consulting
+                industry, specializing in Building Information Modeling (BIM)
+                and construction digitalization. Leads asset digitalization
+                and Digital Twin development for smarter, data-driven
+                infrastructure management.
+              </p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1297,12 +1290,12 @@
     filter: 'all',
     modal: null,
     projects: [
-      {id:1, title:'Geotechnic Analysis - Quay Wall & Wharf', client:'PT Graha Survei Indonesia (for PT Kideco Jaya Agung)', year:2025, cat:'geotech', desc:'Jasa Analisa Geotechnic Quay Wall dan Wharf PT Kideco Jaya Agung. Comprehensive geotechnical analysis for port infrastructure.'},
-      {id:2, title:'Landslide Handling - Cinere–Serpong Tollway', client:'PT Waskita Karya', year:2025, cat:'slope', desc:'Jasa Penanganan Longsoran Jalan Tol Cinere – Serpong. Slope failure assessment and mitigation engineering.'},
-      {id:3, title:'Landslide Handling - Semarang Tollway KM 430 C/A', client:'PT Jasamarga Tollroad Maintenance', year:2025, cat:'slope', desc:'Jasa Penanganan Longsoran Jalan Tol Semarang KM 430 C/A. Geotechnical mitigation along active tollway.'},
-      {id:4, title:'Geotechnic Analysis - IKN Access Road', client:'PT Bangun Cipta – Panca Karya KSO', year:2025, cat:'geotech', desc:'Jasa Analisa Geotechnic untuk Pembangunan Jalan Akses di IKN. Subsurface investigation and design recommendations.'},
-      {id:5, title:'Slope Reinforcement Supervision - Semarang–Batang', client:'PT Jasamarga Tollroad Maintenance — PT JTSB', year:2025, cat:'slope', desc:'Jasa Pendampingan Teknis Pelaksanaan Perkuatan Lereng Jalan Tol Semarang - Batang.'},
-      {id:6, title:'Slake Durability Testing', client:'PT Adhi Karya', year:2025, cat:'lab', desc:'Jasa Pengujian Slake Durability. Laboratory testing for rock durability evaluation.'}
+      {id:1, title:'Geotechnic Analysis - Quay Wall & Wharf', client:'PT Graha Survei Indonesia (for PT Kideco Jaya Agung)', year:2025, cat:'geotech', desc:'Geotechnical analysis of the quay wall and wharf structures for PT Kideco Jaya Agung — a comprehensive assessment for port infrastructure.'},
+      {id:2, title:'Landslide Handling - Cinere–Serpong Tollway', client:'PT Waskita Karya', year:2025, cat:'slope', desc:'Landslide handling for the Cinere–Serpong toll road, covering slope failure assessment and mitigation engineering.'},
+      {id:3, title:'Landslide Handling - Semarang Tollway KM 430 C/A', client:'PT Jasamarga Tollroad Maintenance', year:2025, cat:'slope', desc:'Landslide handling on the Semarang Toll Road KM 430 C/A — geotechnical mitigation along an active tollway.'},
+      {id:4, title:'Geotechnic Analysis - IKN Access Road', client:'PT Bangun Cipta – Panca Karya KSO', year:2025, cat:'geotech', desc:'Geotechnical analysis for the IKN access road development, including subsurface investigation and design recommendations.'},
+      {id:5, title:'Slope Reinforcement Supervision - Semarang–Batang', client:'PT Jasamarga Tollroad Maintenance — PT JTSB', year:2025, cat:'slope', desc:'Technical supervision for slope reinforcement works on the Semarang–Batang toll road.'},
+      {id:6, title:'Slake Durability Testing', client:'PT Adhi Karya', year:2025, cat:'lab', desc:'Slake durability testing — laboratory evaluation of rock durability characteristics.'}
     ]
   }"
     >
@@ -1623,22 +1616,15 @@
           </p>
 
           <div class="mt-10 grid sm:grid-cols-2 gap-4">
-            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+            <div
+              class="rounded-2xl bg-white/5 border border-white/10 p-5 sm:col-span-2"
+            >
               <p class="text-xs uppercase tracking-wider text-lime-300">
-                Office 1
+                Office
               </p>
               <p class="mt-2 text-sm text-slate-200 leading-relaxed">
                 Jl. Temugiring 2 Villa Mas Cluster, No 1 RT 003/004, Banyumanik,
                 Kota Semarang
-              </p>
-            </div>
-            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
-              <p class="text-xs uppercase tracking-wider text-lime-300">
-                Office 2
-              </p>
-              <p class="mt-2 text-sm text-slate-200 leading-relaxed">
-                Jl. Indraprasta No.74, Pendrikan Kidul, Kec. Semarang Tengah,
-                Kota Semarang, Jawa Tengah 50131
               </p>
             </div>
             <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
@@ -1748,9 +1734,14 @@
         <div class="md:col-span-2">
           <div class="flex items-center gap-2.5">
             <span
-              class="w-10 h-10 rounded-xl bg-lime-400 grid place-items-center text-slate-950 font-extrabold text-lg"
-              >G</span
+              class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-white/15 inline-flex items-center justify-center shadow-sm overflow-hidden"
             >
+              <img
+                src="assets/icons/company-gfm.jpeg"
+                alt="GFM Consult logo"
+                class="w-full h-full object-contain"
+              />
+            </span>
             <span class="leading-tight">
               <span class="block font-bold text-white">GFM Consult</span>
               <span

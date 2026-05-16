@@ -42,10 +42,10 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/style.css" />
 
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' fill='%2384cc16' font-family='Inter,sans-serif' font-size='22' font-weight='800'%3EL%3C/text%3E%3C/svg%3E"
-    />
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/icons/sistem-lhms.jpeg" />
+    <link rel="shortcut icon" type="image/jpeg" href="assets/icons/sistem-lhms.jpeg" />
+    <link rel="apple-touch-icon" href="assets/icons/sistem-lhms.jpeg" />
   </head>
 
   <body class="bg-white text-slate-900 antialiased">
@@ -62,9 +62,14 @@
         <div class="flex items-center justify-between h-16 lg:h-20">
           <a href="index.html" class="flex items-center gap-2.5 group">
             <span
-              class="w-10 h-10 rounded-xl bg-slate-900 grid place-items-center text-lime-400 font-extrabold text-lg shadow-md"
-              >L</span
+              class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-slate-200 inline-flex items-center justify-center shadow-md overflow-hidden"
             >
+              <img
+                src="assets/icons/sistem-lhms.jpeg"
+                alt="LHMS system logo"
+                class="w-full h-full object-contain"
+              />
+            </span>
             <span class="leading-tight">
               <span class="block font-bold text-slate-900">LHMS</span>
               <span
@@ -664,12 +669,12 @@
         <div x-data class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <template
             x-for="f in [
-        {i:'📦', t:'Slope Inventory', d:'Form inventarisasi lereng, nomenklatur, database lereng, slope geometry, geological feature, slope construction, dan slope disaster record.'},
-        {i:'⚖️', t:'Slope Priority', d:'Priority ranking dan slope hazard classification berdasarkan risiko, urgency, instability score, dan consequence score.'},
-        {i:'🔍', t:'Slope Inspection', d:'Jadwal inspeksi, routine & engineering inspection, history inspection, dan notifikasi jadwal inspeksi otomatis.'},
-        {i:'🛡️', t:'Slope Preservation', d:'History tindakan darurat, tindakan preventif, metode perbaikan, dan approval workflow dari engineer.'},
-        {i:'🧮', t:'Mitigation Calculation', d:'Estimasi biaya perawatan, pemeliharaan, perkuatan, dan remedial setiap lereng dalam satu pipeline.'},
-        {i:'🗺️', t:'Slope Information (WebGIS)', d:'WebGIS map untuk menampilkan lokasi lereng, resume data, dokumentasi, status inspeksi, dan rencana mitigasi.'}
+        {i:'📦', t:'Slope Inventory', d:'Slope inventory forms, nomenclature, slope database, slope geometry, geological features, slope construction, and slope disaster records.'},
+        {i:'⚖️', t:'Slope Priority', d:'Priority ranking and slope hazard classification based on risk, urgency, instability score, and consequence score.'},
+        {i:'🔍', t:'Slope Inspection', d:'Inspection scheduling, routine and engineering inspections, inspection history, and automated inspection notifications.'},
+        {i:'🛡️', t:'Slope Preservation', d:'Emergency response history, preventive actions, repair methods, and engineer approval workflow.'},
+        {i:'🧮', t:'Mitigation Calculation', d:'Cost estimation for maintenance, preservation, reinforcement, and remedial works of each slope within a single pipeline.'},
+        {i:'🗺️', t:'Slope Information (WebGIS)', d:'WebGIS map to display slope locations, data summaries, documentation, inspection status, and mitigation plans.'}
       ]"
           >
             <div
@@ -713,10 +718,10 @@
         >
           <template
             x-for="(r,i) in [
-        {n:'Manager', d:'Mengontrol akun di bawahnya, menyetujui program mitigasi, menyetujui anggaran, monitoring performa slope management.', c:'bg-slate-950 text-white'},
-        {n:'Engineer', d:'Input, edit, delete, approval data inspector, validasi teknis, analisis stabilitas, rekomendasi mitigasi.', c:'bg-lime-500 text-slate-950'},
-        {n:'Inspector', d:'Input dan edit data dengan approval, routine inspection, dokumentasi kondisi lereng di lapangan.', c:'bg-emerald-500 text-white'},
-        {n:'Visitor', d:'Akses read-only untuk melihat informasi sistem, ringkasan slope, dan dokumen publik.', c:'bg-white text-slate-900 border-2 border-slate-200'}
+        {n:'Manager', d:'Oversees subordinate accounts, approves mitigation programs and budgets, and monitors slope management performance.', c:'bg-slate-950 text-white'},
+        {n:'Engineer', d:'Inputs, edits, deletes, and approves inspector data; performs technical validation, stability analysis, and mitigation recommendations.', c:'bg-lime-500 text-slate-950'},
+        {n:'Inspector', d:'Inputs and edits data with approval, conducts routine inspections, and documents on-site slope conditions.', c:'bg-emerald-500 text-white'},
+        {n:'Visitor', d:'Read-only access to view system information, slope summaries, and public documents.', c:'bg-white text-slate-900 border-2 border-slate-200'}
       ]"
             :key="i"
           >
@@ -801,15 +806,15 @@
           x-data="{
         step: 0,
         steps: [
-          {t:'Field Inspection', d:'Inspector mengumpulkan kondisi visual, foto, dan parameter lapangan.'},
-          {t:'Slope Inventory', d:'Data lereng dimasukkan ke database dengan nomenklatur dan geometri.'},
-          {t:'Risk Assessment', d:'Sistem menghitung instability & consequence score untuk hazard rating.'},
-          {t:'Priority Ranking', d:'Lereng dirangking otomatis berdasarkan risiko & urgensi penanganan.'},
-          {t:'Inspection Schedule', d:'Jadwal inspeksi berikutnya dikalkulasi & notifikasi dikirim ke inspektor.'},
-          {t:'Preservation Action', d:'Tindakan preventif/darurat dicatat dengan approval engineer.'},
-          {t:'Mitigation Cost Calculation', d:'Estimasi biaya remedial, perkuatan, dan pemeliharaan dihitung otomatis.'},
-          {t:'GIS-Based Slope Information', d:'Seluruh data divisualisasikan dalam peta WebGIS interaktif.'},
-          {t:'Decision Support System', d:'Insight & rekomendasi untuk pengambilan keputusan tingkat manajemen.'}
+          {t:'Field Inspection', d:'Inspectors collect visual conditions, photos, and field parameters.'},
+          {t:'Slope Inventory', d:'Slope data is entered into the database with nomenclature and geometry.'},
+          {t:'Risk Assessment', d:'The system computes instability and consequence scores for hazard rating.'},
+          {t:'Priority Ranking', d:'Slopes are automatically ranked by risk and handling urgency.'},
+          {t:'Inspection Schedule', d:'The next inspection schedule is calculated and notifications are sent to inspectors.'},
+          {t:'Preservation Action', d:'Preventive and emergency actions are recorded with engineer approval.'},
+          {t:'Mitigation Cost Calculation', d:'Remedial, reinforcement, and maintenance costs are estimated automatically.'},
+          {t:'GIS-Based Slope Information', d:'All data is visualized on an interactive WebGIS map.'},
+          {t:'Decision Support System', d:'Insights and recommendations for management-level decision-making.'}
         ]
       }"
           class="mt-14 reveal"
@@ -1114,11 +1119,11 @@
           <template
             x-for="(d,i) in [
         {t:'What\'s New', d:'Release notes & system updates.', i:'🆕'},
-        {t:'Inspection Schedule Notification', d:'Automated reminder untuk jadwal inspeksi.', i:'🔔'},
-        {t:'About System', d:'Penjelasan modul & arsitektur platform.', i:'ℹ️'},
-        {t:'Document Publish', d:'Laporan, sertifikasi, dan dokumen publik.', i:'📄'},
-        {t:'Manual Book', d:'Panduan operasional untuk setiap role.', i:'📘'},
-        {t:'Standard & Reference', d:'Standar teknis & referensi engineering.', i:'📚'}
+        {t:'Inspection Schedule Notification', d:'Automated reminders for inspection schedules.', i:'🔔'},
+        {t:'About System', d:'Module explanations and platform architecture overview.', i:'ℹ️'},
+        {t:'Document Publish', d:'Reports, certifications, and public documents.', i:'📄'},
+        {t:'Manual Book', d:'Operational guidance for each role.', i:'📘'},
+        {t:'Standard & Reference', d:'Technical standards and engineering references.', i:'📚'}
       ]"
             :key="i"
           >
@@ -1246,9 +1251,14 @@
         <div class="md:col-span-2">
           <div class="flex items-center gap-2.5">
             <span
-              class="w-10 h-10 rounded-xl bg-lime-400 grid place-items-center text-slate-950 font-extrabold text-lg"
-              >L</span
+              class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-white/15 inline-flex items-center justify-center shadow-sm overflow-hidden"
             >
+              <img
+                src="assets/icons/sistem-lhms.jpeg"
+                alt="LHMS system logo"
+                class="w-full h-full object-contain"
+              />
+            </span>
             <span class="leading-tight">
               <span class="block font-bold text-white">LHMS</span>
               <span
