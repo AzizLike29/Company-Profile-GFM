@@ -1,363 +1,804 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LHMS — Landslide Hazard & Monitoring System | GFM Consult</title>
-  <meta name="description" content="LHMS — a web-based slope management platform for inventory, risk assessment, inspection, preservation, mitigation planning, and GIS-based slope information." />
-  <meta name="theme-color" content="#84cc16" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LHMS — Landslide Hazard & Monitoring System | GFM Consult</title>
+    <meta
+      name="description"
+      content="LHMS — a web-based slope management platform for inventory, risk assessment, inspection, preservation, mitigation planning, and GIS-based slope information."
+    />
+    <meta name="theme-color" content="#84cc16" />
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: { brand: { lime: '#84cc16', emerald: '#10b981', deep: '#0f172a' } }
-        }
-      }
-    };
-  </script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+            colors: {
+              brand: { lime: "#84cc16", emerald: "#10b981", deep: "#0f172a" },
+            },
+          },
+        },
+      };
+    </script>
 
-  <!-- Alpine.js CDN -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine.js CDN -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' fill='%2384cc16' font-family='Inter,sans-serif' font-size='22' font-weight='800'%3EL%3C/text%3E%3C/svg%3E" />
-</head>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' fill='%2384cc16' font-family='Inter,sans-serif' font-size='22' font-weight='800'%3EL%3C/text%3E%3C/svg%3E"
+    />
+  </head>
 
-<body class="bg-white text-slate-900 antialiased">
-
-<!-- ============================================================
+  <body class="bg-white text-slate-900 antialiased">
+    <!-- ============================================================
      NAVBAR
 ============================================================ -->
-<nav
-  x-data="{ open: false, scrolled: false }"
-  x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
-  :class="scrolled ? 'backdrop-blur-md bg-white/80 border-slate-200 shadow-sm' : 'bg-transparent border-transparent'"
-  class="fixed top-0 inset-x-0 z-50 border-b transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="flex items-center justify-between h-16 lg:h-20">
-      <a href="index.html" class="flex items-center gap-2.5 group">
-        <span class="w-10 h-10 rounded-xl bg-slate-900 grid place-items-center text-lime-400 font-extrabold text-lg shadow-md">L</span>
-        <span class="leading-tight">
-          <span class="block font-bold text-slate-900">LHMS</span>
-          <span class="block text-[10px] uppercase tracking-widest text-slate-500">by GFM Consult</span>
-        </span>
-      </a>
+    <nav
+      x-data="{ open: false, scrolled: false }"
+      x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
+      :class="scrolled ? 'backdrop-blur-md bg-white/80 border-slate-200 shadow-sm' : 'bg-transparent border-transparent'"
+      class="fixed top-0 inset-x-0 z-50 border-b transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+          <a href="index.html" class="flex items-center gap-2.5 group">
+            <span
+              class="w-10 h-10 rounded-xl bg-slate-900 grid place-items-center text-lime-400 font-extrabold text-lg shadow-md"
+              >L</span
+            >
+            <span class="leading-tight">
+              <span class="block font-bold text-slate-900">LHMS</span>
+              <span
+                class="block text-[10px] uppercase tracking-widest text-slate-500"
+                >by GFM Consult</span
+              >
+            </span>
+          </a>
 
-      <ul class="hidden lg:flex items-center gap-9 text-sm font-medium text-slate-700">
-        <li><a href="#whatsnew" class="nav-link" data-section="whatsnew">What's New</a></li>
-        <li><a href="#about-system" class="nav-link" data-section="about-system">About System</a></li>
-        <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
-        <li><a href="#workflow" class="nav-link" data-section="workflow">Workflow</a></li>
-        <li><a href="#documents" class="nav-link" data-section="documents">Document Publish</a></li>
-        <li><a href="#dashboard" class="nav-link" data-section="dashboard">Dashboard</a></li>
-      </ul>
+          <ul
+            class="hidden lg:flex items-center gap-9 text-sm font-medium text-slate-700"
+          >
+            <li>
+              <a href="#whatsnew" class="nav-link" data-section="whatsnew"
+                >What's New</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about-system"
+                class="nav-link"
+                data-section="about-system"
+                >About System</a
+              >
+            </li>
+            <li>
+              <a href="#features" class="nav-link" data-section="features"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a href="#workflow" class="nav-link" data-section="workflow"
+                >Workflow</a
+              >
+            </li>
+            <li>
+              <a href="#documents" class="nav-link" data-section="documents"
+                >Document Publish</a
+              >
+            </li>
+            <li>
+              <a href="#dashboard" class="nav-link" data-section="dashboard"
+                >Dashboard</a
+              >
+            </li>
+          </ul>
 
-      <div class="hidden lg:flex items-center gap-3">
-        <a href="index.html" class="text-sm font-semibold text-slate-700 hover:text-lime-700">← Company Profile</a>
-        <a href="#dashboard" class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-full transition-all">Open Demo</a>
+          <div class="hidden lg:flex items-center gap-3">
+            <a
+              href="index.html"
+              class="text-sm font-semibold text-slate-700 hover:text-lime-700"
+              >← Company Profile</a
+            >
+            <a
+              href="#dashboard"
+              class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-full transition-all"
+              >Open Demo</a
+            >
+          </div>
+
+          <button
+            @click="open = !open"
+            :aria-expanded="open"
+            aria-label="Toggle navigation"
+            class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-slate-700"
+          >
+            <svg
+              x-show="!open"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <svg
+              x-show="open"
+              style="display: none"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div
+          x-show="open"
+          x-transition
+          style="display: none"
+          class="lg:hidden pb-4"
+        >
+          <ul
+            class="flex flex-col gap-1 bg-white border border-slate-200 rounded-2xl p-3 shadow-lg"
+          >
+            <li>
+              <a
+                @click="open=false"
+                href="#whatsnew"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50"
+                >What's New</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#about-system"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50"
+                >About System</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#features"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#workflow"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50"
+                >Workflow</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#documents"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50"
+                >Document Publish</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="#dashboard"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="index.html"
+                class="block px-4 py-2.5 rounded-lg bg-slate-100 font-semibold"
+                >← Back to Company Profile</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
+    </nav>
 
-      <button @click="open = !open" :aria-expanded="open" aria-label="Toggle navigation"
-              class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-slate-700">
-        <svg x-show="!open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg x-show="open" style="display:none" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-
-    <div x-show="open" x-transition style="display:none" class="lg:hidden pb-4">
-      <ul class="flex flex-col gap-1 bg-white border border-slate-200 rounded-2xl p-3 shadow-lg">
-        <li><a @click="open=false" href="#whatsnew" class="block px-4 py-2.5 rounded-lg hover:bg-lime-50">What's New</a></li>
-        <li><a @click="open=false" href="#about-system" class="block px-4 py-2.5 rounded-lg hover:bg-lime-50">About System</a></li>
-        <li><a @click="open=false" href="#features" class="block px-4 py-2.5 rounded-lg hover:bg-lime-50">Features</a></li>
-        <li><a @click="open=false" href="#workflow" class="block px-4 py-2.5 rounded-lg hover:bg-lime-50">Workflow</a></li>
-        <li><a @click="open=false" href="#documents" class="block px-4 py-2.5 rounded-lg hover:bg-lime-50">Document Publish</a></li>
-        <li><a @click="open=false" href="#dashboard" class="block px-4 py-2.5 rounded-lg hover:bg-lime-50">Dashboard</a></li>
-        <li><a @click="open=false" href="index.html" class="block px-4 py-2.5 rounded-lg bg-slate-100 font-semibold">← Back to Company Profile</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-<!-- ============================================================
+    <!-- ============================================================
      FLOATING DOTS NAV (desktop)
 ============================================================ -->
-<aside class="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3">
-  <a href="#home" class="dot-nav-item active" data-target="home" aria-label="Hero"></a>
-  <a href="#about-system" class="dot-nav-item" data-target="about-system" aria-label="About"></a>
-  <a href="#features" class="dot-nav-item" data-target="features" aria-label="Features"></a>
-  <a href="#hierarchy" class="dot-nav-item" data-target="hierarchy" aria-label="Hierarchy"></a>
-  <a href="#slope-types" class="dot-nav-item" data-target="slope-types" aria-label="Slope Types"></a>
-  <a href="#workflow" class="dot-nav-item" data-target="workflow" aria-label="Workflow"></a>
-  <a href="#documents" class="dot-nav-item" data-target="documents" aria-label="Documents"></a>
-  <a href="#faq" class="dot-nav-item" data-target="faq" aria-label="FAQ"></a>
-</aside>
+    <aside
+      class="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-3"
+    >
+      <a
+        href="#home"
+        class="dot-nav-item active"
+        data-target="home"
+        aria-label="Hero"
+      ></a>
+      <a
+        href="#about-system"
+        class="dot-nav-item"
+        data-target="about-system"
+        aria-label="About"
+      ></a>
+      <a
+        href="#features"
+        class="dot-nav-item"
+        data-target="features"
+        aria-label="Features"
+      ></a>
+      <a
+        href="#hierarchy"
+        class="dot-nav-item"
+        data-target="hierarchy"
+        aria-label="Hierarchy"
+      ></a>
+      <a
+        href="#slope-types"
+        class="dot-nav-item"
+        data-target="slope-types"
+        aria-label="Slope Types"
+      ></a>
+      <a
+        href="#workflow"
+        class="dot-nav-item"
+        data-target="workflow"
+        aria-label="Workflow"
+      ></a>
+      <a
+        href="#documents"
+        class="dot-nav-item"
+        data-target="documents"
+        aria-label="Documents"
+      ></a>
+      <a
+        href="#faq"
+        class="dot-nav-item"
+        data-target="faq"
+        aria-label="FAQ"
+      ></a>
+    </aside>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      HERO
 ============================================================ -->
-<section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden bg-grid">
-  <div class="blob bg-lime-200 w-72 h-72 -top-20 -left-20"></div>
-  <div class="blob bg-emerald-200 w-96 h-96 top-40 -right-32" style="animation-delay:-7s"></div>
+    <section
+      id="home"
+      class="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden bg-grid"
+    >
+      <div class="blob bg-lime-200 w-72 h-72 -top-20 -left-20"></div>
+      <div
+        class="blob bg-emerald-200 w-96 h-96 top-40 -right-32"
+        style="animation-delay: -7s"
+      ></div>
 
-  <div class="relative max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
-    <div class="lg:col-span-6 reveal">
-      <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-50 border border-lime-200 text-lime-800 text-xs font-semibold tracking-wide">
-        <span class="w-1.5 h-1.5 rounded-full bg-lime-500 animate-pulse"></span>
-        Digital Slope Management Platform
-      </span>
-      <h1 class="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-900">
-        Landslide Hazard &
-        <span class="text-gradient">Monitoring System</span>
-      </h1>
-      <p class="mt-6 text-lg text-gray-600 max-w-xl leading-relaxed">
-        Web-based slope management platform for inventory, risk assessment, inspection, preservation, mitigation planning, and GIS-based slope information.
-      </p>
-      <div class="mt-9 flex flex-wrap gap-3">
-        <a href="#features" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-3.5 rounded-full transition-all shadow-lg">
-          Explore Features
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-        <a href="index.html" class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3.5 rounded-full transition-all">
-          ← Back to Company Profile
-        </a>
-        <a href="#dashboard" class="inline-flex items-center gap-2 border border-lime-300 hover:bg-lime-50 text-slate-800 font-semibold px-6 py-3.5 rounded-full transition-all">
-          Open WebGIS Demo
-        </a>
-      </div>
-
-      <div class="mt-10 grid grid-cols-3 gap-5">
-        <div><div class="text-2xl font-extrabold text-slate-900"><span data-counter="6">0</span></div><div class="text-xs uppercase tracking-wider text-slate-500 mt-1">Modules</div></div>
-        <div><div class="text-2xl font-extrabold text-slate-900"><span data-counter="4">0</span></div><div class="text-xs uppercase tracking-wider text-slate-500 mt-1">User Roles</div></div>
-        <div><div class="text-2xl font-extrabold text-slate-900"><span data-counter="5">0</span></div><div class="text-xs uppercase tracking-wider text-slate-500 mt-1">Slope Types</div></div>
-      </div>
-    </div>
-
-    <!-- Dashboard Mockup -->
-    <div class="lg:col-span-6 reveal">
-      <div class="relative">
-        <div class="absolute -inset-6 bg-gradient-to-br from-lime-200 via-emerald-200 to-transparent rounded-3xl blur-3xl opacity-60"></div>
-        <div class="relative rounded-3xl bg-slate-950 shadow-2xl border border-slate-800 overflow-hidden">
-          <div class="flex items-center gap-2 px-4 py-3 border-b border-slate-800">
-            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-            <span class="ml-3 text-xs text-slate-500">lhms.gfm-consult / dashboard</span>
+      <div
+        class="relative max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-12 gap-12 items-center"
+      >
+        <div class="lg:col-span-6 reveal">
+          <span
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-50 border border-lime-200 text-lime-800 text-xs font-semibold tracking-wide"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-lime-500 animate-pulse"
+            ></span>
+            Digital Slope Management Platform
+          </span>
+          <h1
+            class="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
+          >
+            Landslide Hazard &
+            <span class="text-gradient">Monitoring System</span>
+          </h1>
+          <p class="mt-6 text-lg text-gray-600 max-w-xl leading-relaxed">
+            Web-based slope management platform for inventory, risk assessment,
+            inspection, preservation, mitigation planning, and GIS-based slope
+            information.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#features"
+              class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-3.5 rounded-full transition-all shadow-lg"
+            >
+              Explore Features
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+            <a
+              href="index.html"
+              class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3.5 rounded-full transition-all"
+            >
+              ← Back to Company Profile
+            </a>
+            <a
+              href="#dashboard"
+              class="inline-flex items-center gap-2 border border-lime-300 hover:bg-lime-50 text-slate-800 font-semibold px-6 py-3.5 rounded-full transition-all"
+            >
+              Open WebGIS Demo
+            </a>
           </div>
-          <div class="grid grid-cols-12 min-h-[420px]">
-            <!-- Sidebar -->
-            <aside class="col-span-4 md:col-span-3 bg-slate-900 border-r border-slate-800 p-3 text-xs">
-              <p class="px-2 py-1 text-slate-500 uppercase tracking-widest">Menu</p>
-              <nav class="mt-1 space-y-0.5 text-slate-300">
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg bg-lime-500/15 text-lime-300 font-semibold">▤ Dashboard</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">📦 Slope Inventory</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">⚖️ Slope Priority</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">🔍 Inspection</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">🛡 Preservation</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">🧮 Mitigation Calc</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">🗺 Slope Info</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">📄 Document</span>
-                <span class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800">⚙ Settings</span>
-              </nav>
-            </aside>
-            <!-- Content -->
-            <div class="col-span-8 md:col-span-9 p-4 text-slate-200">
-              <div class="flex items-center justify-between">
-                <div>
-                  <p class="text-xs text-slate-500">Welcome back, Engineer</p>
-                  <p class="font-bold">Slope Overview · 2025</p>
+
+          <div class="mt-10 grid grid-cols-3 gap-5">
+            <div>
+              <div class="text-2xl font-extrabold text-slate-900">
+                <span data-counter="6">0</span>
+              </div>
+              <div class="text-xs uppercase tracking-wider text-slate-500 mt-1">
+                Modules
+              </div>
+            </div>
+            <div>
+              <div class="text-2xl font-extrabold text-slate-900">
+                <span data-counter="4">0</span>
+              </div>
+              <div class="text-xs uppercase tracking-wider text-slate-500 mt-1">
+                User Roles
+              </div>
+            </div>
+            <div>
+              <div class="text-2xl font-extrabold text-slate-900">
+                <span data-counter="5">0</span>
+              </div>
+              <div class="text-xs uppercase tracking-wider text-slate-500 mt-1">
+                Slope Types
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Mockup -->
+        <div class="lg:col-span-6 reveal">
+          <div class="relative">
+            <div
+              class="absolute -inset-6 bg-gradient-to-br from-lime-200 via-emerald-200 to-transparent rounded-3xl blur-3xl opacity-60"
+            ></div>
+            <div
+              class="relative rounded-3xl bg-slate-950 shadow-2xl border border-slate-800 overflow-hidden"
+            >
+              <div
+                class="flex items-center gap-2 px-4 py-3 border-b border-slate-800"
+              >
+                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span class="ml-3 text-xs text-slate-500"
+                  >lhms.gfm-consult / dashboard</span
+                >
+              </div>
+              <div class="grid grid-cols-12 min-h-[420px]">
+                <!-- Sidebar -->
+                <aside
+                  class="col-span-4 md:col-span-3 bg-slate-900 border-r border-slate-800 p-3 text-xs"
+                >
+                  <p class="px-2 py-1 text-slate-500 uppercase tracking-widest">
+                    Menu
+                  </p>
+                  <nav class="mt-1 space-y-0.5 text-slate-300">
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg bg-lime-500/15 text-lime-300 font-semibold"
+                      >▤ Dashboard</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >📦 Slope Inventory</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >⚖️ Slope Priority</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >🔍 Inspection</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >🛡 Preservation</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >🧮 Mitigation Calc</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >🗺 Slope Info</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >📄 Document</span
+                    >
+                    <span
+                      class="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-slate-800"
+                      >⚙ Settings</span
+                    >
+                  </nav>
+                </aside>
+                <!-- Content -->
+                <div class="col-span-8 md:col-span-9 p-4 text-slate-200">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-xs text-slate-500">
+                        Welcome back, Engineer
+                      </p>
+                      <p class="font-bold">Slope Overview · 2025</p>
+                    </div>
+                    <span
+                      class="px-2.5 py-1 rounded-full bg-lime-500/15 text-lime-300 text-[10px] font-semibold"
+                      >LIVE</span
+                    >
+                  </div>
+                  <div class="grid grid-cols-3 gap-2 mt-4 text-xs">
+                    <div class="rounded-xl bg-slate-800/60 p-3">
+                      <p class="text-slate-500">Inventory</p>
+                      <p class="text-lg font-bold text-white">248</p>
+                    </div>
+                    <div class="rounded-xl bg-slate-800/60 p-3">
+                      <p class="text-slate-500">High Risk</p>
+                      <p class="text-lg font-bold text-lime-400">36</p>
+                    </div>
+                    <div class="rounded-xl bg-slate-800/60 p-3">
+                      <p class="text-slate-500">Mitigated</p>
+                      <p class="text-lg font-bold text-emerald-400">94</p>
+                    </div>
+                  </div>
+                  <div
+                    class="mt-3 h-32 rounded-xl bg-slate-800/40 border border-slate-700 relative overflow-hidden"
+                  >
+                    <svg
+                      viewBox="0 0 300 100"
+                      class="absolute inset-0 w-full h-full"
+                    >
+                      <defs>
+                        <linearGradient id="lg" x1="0" x2="0" y1="0" y2="1">
+                          <stop
+                            offset="0"
+                            stop-color="#84cc16"
+                            stop-opacity=".5"
+                          />
+                          <stop
+                            offset="1"
+                            stop-color="#84cc16"
+                            stop-opacity="0"
+                          />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M0,80 C40,60 70,75 110,45 C150,15 190,55 230,30 C260,15 290,40 300,30 L300,100 L0,100 Z"
+                        fill="url(#lg)"
+                      />
+                      <path
+                        d="M0,80 C40,60 70,75 110,45 C150,15 190,55 230,30 C260,15 290,40 300,30"
+                        fill="none"
+                        stroke="#84cc16"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </div>
+                  <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+                    <div
+                      class="rounded-xl bg-slate-800/60 p-3 flex items-center gap-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-lime-400"></span
+                      ><span class="text-slate-300"
+                        >Inspection due — 14 slopes</span
+                      >
+                    </div>
+                    <div
+                      class="rounded-xl bg-slate-800/60 p-3 flex items-center gap-2"
+                    >
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span
+                      ><span class="text-slate-300"
+                        >Mitigation approved — 5</span
+                      >
+                    </div>
+                  </div>
                 </div>
-                <span class="px-2.5 py-1 rounded-full bg-lime-500/15 text-lime-300 text-[10px] font-semibold">LIVE</span>
-              </div>
-              <div class="grid grid-cols-3 gap-2 mt-4 text-xs">
-                <div class="rounded-xl bg-slate-800/60 p-3"><p class="text-slate-500">Inventory</p><p class="text-lg font-bold text-white">248</p></div>
-                <div class="rounded-xl bg-slate-800/60 p-3"><p class="text-slate-500">High Risk</p><p class="text-lg font-bold text-lime-400">36</p></div>
-                <div class="rounded-xl bg-slate-800/60 p-3"><p class="text-slate-500">Mitigated</p><p class="text-lg font-bold text-emerald-400">94</p></div>
-              </div>
-              <div class="mt-3 h-32 rounded-xl bg-slate-800/40 border border-slate-700 relative overflow-hidden">
-                <svg viewBox="0 0 300 100" class="absolute inset-0 w-full h-full">
-                  <defs><linearGradient id="lg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#84cc16" stop-opacity=".5"/><stop offset="1" stop-color="#84cc16" stop-opacity="0"/></linearGradient></defs>
-                  <path d="M0,80 C40,60 70,75 110,45 C150,15 190,55 230,30 C260,15 290,40 300,30 L300,100 L0,100 Z" fill="url(#lg)"/>
-                  <path d="M0,80 C40,60 70,75 110,45 C150,15 190,55 230,30 C260,15 290,40 300,30" fill="none" stroke="#84cc16" stroke-width="2"/>
-                </svg>
-              </div>
-              <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
-                <div class="rounded-xl bg-slate-800/60 p-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-lime-400"></span><span class="text-slate-300">Inspection due — 14 slopes</span></div>
-                <div class="rounded-xl bg-slate-800/60 p-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><span class="text-slate-300">Mitigation approved — 5</span></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      WHAT'S NEW (Notification / Document strip)
 ============================================================ -->
-<section id="whatsnew" class="py-12 bg-lime-50/40 border-y border-lime-100">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-5 reveal">
-    <div class="rounded-2xl bg-white border border-slate-100 p-5 lift">
-      <p class="text-xs uppercase tracking-widest text-lime-700 font-semibold">What's New</p>
-      <p class="mt-2 font-bold text-slate-900">Release v1.4 — WebGIS Improvements</p>
-      <p class="mt-1 text-sm text-gray-600">New layered hazard map, exportable inspection reports, refreshed UI.</p>
-    </div>
-    <div class="rounded-2xl bg-white border border-slate-100 p-5 lift">
-      <p class="text-xs uppercase tracking-widest text-lime-700 font-semibold">Inspection Schedule</p>
-      <p class="mt-2 font-bold text-slate-900">14 slopes due this month</p>
-      <p class="mt-1 text-sm text-gray-600">Automated notifications dispatched to assigned inspectors.</p>
-    </div>
-    <div class="rounded-2xl bg-white border border-slate-100 p-5 lift">
-      <p class="text-xs uppercase tracking-widest text-lime-700 font-semibold">About System</p>
-      <p class="mt-2 font-bold text-slate-900">Manual Book v2.1 published</p>
-      <p class="mt-1 text-sm text-gray-600">Updated standards & operational references available below.</p>
-    </div>
-  </div>
-</section>
+    <section id="whatsnew" class="py-12 bg-lime-50/40 border-y border-lime-100">
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-5 reveal"
+      >
+        <div class="rounded-2xl bg-white border border-slate-100 p-5 lift">
+          <p
+            class="text-xs uppercase tracking-widest text-lime-700 font-semibold"
+          >
+            What's New
+          </p>
+          <p class="mt-2 font-bold text-slate-900">
+            Release v1.4 — WebGIS Improvements
+          </p>
+          <p class="mt-1 text-sm text-gray-600">
+            New layered hazard map, exportable inspection reports, refreshed UI.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white border border-slate-100 p-5 lift">
+          <p
+            class="text-xs uppercase tracking-widest text-lime-700 font-semibold"
+          >
+            Inspection Schedule
+          </p>
+          <p class="mt-2 font-bold text-slate-900">14 slopes due this month</p>
+          <p class="mt-1 text-sm text-gray-600">
+            Automated notifications dispatched to assigned inspectors.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-white border border-slate-100 p-5 lift">
+          <p
+            class="text-xs uppercase tracking-widest text-lime-700 font-semibold"
+          >
+            About System
+          </p>
+          <p class="mt-2 font-bold text-slate-900">
+            Manual Book v2.1 published
+          </p>
+          <p class="mt-1 text-sm text-gray-600">
+            Updated standards & operational references available below.
+          </p>
+        </div>
+      </div>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      WHY LHMS / ABOUT SYSTEM
 ============================================================ -->
-<section id="about-system" class="section">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
-    <div class="reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200">Why LHMS?</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">A unified platform for predictable slope management.</h2>
-      <p class="mt-5 text-gray-600 leading-relaxed">Landslide is unpredictable and sudden. LHMS gives asset owners a structured, data-driven way to govern slope risk across an entire network.</p>
-    </div>
-    <ul x-data class="grid sm:grid-cols-2 gap-4 reveal">
-      <template x-for="(w,i) in [
+    <section id="about-system" class="section">
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-12 items-center"
+      >
+        <div class="reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >Why LHMS?</span
+          >
+          <h2
+            class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight"
+          >
+            A unified platform for predictable slope management.
+          </h2>
+          <p class="mt-5 text-gray-600 leading-relaxed">
+            Landslide is unpredictable and sudden. LHMS gives asset owners a
+            structured, data-driven way to govern slope risk across an entire
+            network.
+          </p>
+        </div>
+        <ul x-data class="grid sm:grid-cols-2 gap-4 reveal">
+          <template
+            x-for="(w,i) in [
         'Landslide is unpredictable and sudden disaster',
         'LHMS helps asset owners create slope risk rating',
         'LHMS helps arrange priority slope handling',
         'LHMS creates comprehensive slope inventory',
         'LHMS helps calculate maintenance, inspection, and remedial cost estimation',
         'LHMS supports command center development for slope management'
-      ]" :key="i">
-        <li class="rounded-2xl bg-white border border-slate-100 p-5 lift shadow-sm">
-          <span class="w-9 h-9 rounded-xl bg-lime-100 text-lime-700 grid place-items-center font-bold" x-text="i+1"></span>
-          <p class="mt-3 text-slate-800 text-sm leading-relaxed" x-text="w"></p>
-        </li>
-      </template>
-    </ul>
-  </div>
-</section>
+      ]"
+            :key="i"
+          >
+            <li
+              class="rounded-2xl bg-white border border-slate-100 p-5 lift shadow-sm"
+            >
+              <span
+                class="w-9 h-9 rounded-xl bg-lime-100 text-lime-700 grid place-items-center font-bold"
+                x-text="i+1"
+              ></span>
+              <p
+                class="mt-3 text-slate-800 text-sm leading-relaxed"
+                x-text="w"
+              ></p>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      FEATURES (6 main modules)
 ============================================================ -->
-<section id="features" class="section bg-gradient-to-b from-white to-lime-50/40">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200">Core Modules</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">Everything your slope program needs</h2>
-      <p class="mt-3 text-gray-600">Six purpose-built modules that map to real-world slope asset lifecycle.</p>
-    </div>
+    <section
+      id="features"
+      class="section bg-gradient-to-b from-white to-lime-50/40"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
+            >Core Modules</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            Everything your slope program needs
+          </h2>
+          <p class="mt-3 text-gray-600">
+            Six purpose-built modules that map to real-world slope asset
+            lifecycle.
+          </p>
+        </div>
 
-    <div x-data class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <template x-for="f in [
+        <div x-data class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <template
+            x-for="f in [
         {i:'📦', t:'Slope Inventory', d:'Form inventarisasi lereng, nomenklatur, database lereng, slope geometry, geological feature, slope construction, dan slope disaster record.'},
         {i:'⚖️', t:'Slope Priority', d:'Priority ranking dan slope hazard classification berdasarkan risiko, urgency, instability score, dan consequence score.'},
         {i:'🔍', t:'Slope Inspection', d:'Jadwal inspeksi, routine & engineering inspection, history inspection, dan notifikasi jadwal inspeksi otomatis.'},
         {i:'🛡️', t:'Slope Preservation', d:'History tindakan darurat, tindakan preventif, metode perbaikan, dan approval workflow dari engineer.'},
         {i:'🧮', t:'Mitigation Calculation', d:'Estimasi biaya perawatan, pemeliharaan, perkuatan, dan remedial setiap lereng dalam satu pipeline.'},
         {i:'🗺️', t:'Slope Information (WebGIS)', d:'WebGIS map untuk menampilkan lokasi lereng, resume data, dokumentasi, status inspeksi, dan rencana mitigasi.'}
-      ]">
-        <div class="lift rounded-3xl bg-white border border-slate-100 shadow-sm p-7">
-          <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 grid place-items-center text-xl" x-text="f.i"></div>
-          <h3 class="mt-5 text-lg font-bold text-slate-900" x-text="f.t"></h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed" x-text="f.d"></p>
+      ]"
+          >
+            <div
+              class="lift rounded-3xl bg-white border border-slate-100 shadow-sm p-7"
+            >
+              <div
+                class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 grid place-items-center text-xl"
+                x-text="f.i"
+              ></div>
+              <h3
+                class="mt-5 text-lg font-bold text-slate-900"
+                x-text="f.t"
+              ></h3>
+              <p
+                class="mt-2 text-sm text-gray-600 leading-relaxed"
+                x-text="f.d"
+              ></p>
+            </div>
+          </template>
         </div>
-      </template>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      USER HIERARCHY
 ============================================================ -->
-<section id="hierarchy" class="section">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200">User Hierarchy</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">Role-based access for every stakeholder</h2>
-    </div>
-    <div x-data class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
-      <template x-for="(r,i) in [
+    <section id="hierarchy" class="section">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >User Hierarchy</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            Role-based access for every stakeholder
+          </h2>
+        </div>
+        <div
+          x-data
+          class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5 reveal"
+        >
+          <template
+            x-for="(r,i) in [
         {n:'Manager', d:'Mengontrol akun di bawahnya, menyetujui program mitigasi, menyetujui anggaran, monitoring performa slope management.', c:'bg-slate-950 text-white'},
         {n:'Engineer', d:'Input, edit, delete, approval data inspector, validasi teknis, analisis stabilitas, rekomendasi mitigasi.', c:'bg-lime-500 text-slate-950'},
         {n:'Inspector', d:'Input dan edit data dengan approval, routine inspection, dokumentasi kondisi lereng di lapangan.', c:'bg-emerald-500 text-white'},
         {n:'Visitor', d:'Akses read-only untuk melihat informasi sistem, ringkasan slope, dan dokumen publik.', c:'bg-white text-slate-900 border-2 border-slate-200'}
-      ]" :key="i">
-        <div class="lift rounded-3xl p-7 shadow-sm" :class="r.c">
-          <span class="text-xs font-semibold uppercase tracking-widest opacity-70">Level <span x-text="i+1"></span></span>
-          <h3 class="mt-2 text-xl font-extrabold" x-text="r.n"></h3>
-          <p class="mt-3 text-sm leading-relaxed opacity-90" x-text="r.d"></p>
+      ]"
+            :key="i"
+          >
+            <div class="lift rounded-3xl p-7 shadow-sm" :class="r.c">
+              <span
+                class="text-xs font-semibold uppercase tracking-widest opacity-70"
+                >Level <span x-text="i+1"></span
+              ></span>
+              <h3 class="mt-2 text-xl font-extrabold" x-text="r.n"></h3>
+              <p
+                class="mt-3 text-sm leading-relaxed opacity-90"
+                x-text="r.d"
+              ></p>
+            </div>
+          </template>
         </div>
-      </template>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      SLOPE TYPES
 ============================================================ -->
-<section id="slope-types" class="section bg-slate-950 text-white relative overflow-hidden">
-  <div class="blob bg-lime-500/20 w-96 h-96 -top-20 -left-20"></div>
-  <div class="blob bg-emerald-500/20 w-96 h-96 bottom-0 -right-20" style="animation-delay:-4s"></div>
-  <div class="relative max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20">Slope Types</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold">LHMS understands every slope category</h2>
-    </div>
-    <div x-data class="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
-      <template x-for="(s,i) in [
+    <section
+      id="slope-types"
+      class="section bg-slate-950 text-white relative overflow-hidden"
+    >
+      <div class="blob bg-lime-500/20 w-96 h-96 -top-20 -left-20"></div>
+      <div
+        class="blob bg-emerald-500/20 w-96 h-96 bottom-0 -right-20"
+        style="animation-delay: -4s"
+      ></div>
+      <div class="relative max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20"
+            >Slope Types</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold">
+            LHMS understands every slope category
+          </h2>
+        </div>
+        <div x-data class="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+          <template
+            x-for="(s,i) in [
         {n:'Cut Slope', d:'Excavated slopes, soil to soft-rock slope.', i:'⛏️'},
         {n:'Fill Slope', d:'Artificial slopes in the form of earthen embankments.', i:'🪨'},
         {n:'Combined Slope', d:'Combination between excavation/fill slope and retaining wall.', i:'🧱'},
         {n:'Rock Slope', d:'Excavated slope of medium to hard rock.', i:'🏔️'},
         {n:'Retaining Wall', d:'Artificial slope reinforced with retaining wall.', i:'🛡️'}
-      ]" :key="i">
-        <div class="lift rounded-3xl glass-dark p-6">
-          <div class="text-3xl" x-text="s.i"></div>
-          <h3 class="mt-4 font-bold text-lime-300" x-text="s.n"></h3>
-          <p class="mt-2 text-sm text-slate-300 leading-relaxed" x-text="s.d"></p>
+      ]"
+            :key="i"
+          >
+            <div class="lift rounded-3xl glass-dark p-6">
+              <div class="text-3xl" x-text="s.i"></div>
+              <h3 class="mt-4 font-bold text-lime-300" x-text="s.n"></h3>
+              <p
+                class="mt-2 text-sm text-slate-300 leading-relaxed"
+                x-text="s.d"
+              ></p>
+            </div>
+          </template>
         </div>
-      </template>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      WORKFLOW TIMELINE (Interactive)
 ============================================================ -->
-<section id="workflow" class="section">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200">Workflow</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">How LHMS operates end-to-end</h2>
-    </div>
+    <section id="workflow" class="section">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >Workflow</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            How LHMS operates end-to-end
+          </h2>
+        </div>
 
-    <div x-data="{
+        <div
+          x-data="{
         step: 0,
         steps: [
           {t:'Field Inspection', d:'Inspector mengumpulkan kondisi visual, foto, dan parameter lapangan.'},
@@ -370,264 +811,565 @@
           {t:'GIS-Based Slope Information', d:'Seluruh data divisualisasikan dalam peta WebGIS interaktif.'},
           {t:'Decision Support System', d:'Insight & rekomendasi untuk pengambilan keputusan tingkat manajemen.'}
         ]
-      }" class="mt-14 reveal">
+      }"
+          class="mt-14 reveal"
+        >
+          <!-- Timeline rail -->
+          <div class="hidden md:grid grid-cols-9 gap-2 relative">
+            <div class="absolute left-0 right-0 top-5 h-px bg-slate-200"></div>
+            <template x-for="(s,i) in steps" :key="i">
+              <button
+                @click="step=i"
+                class="timeline-step relative flex flex-col items-center group"
+                :class="step===i ? 'active' : ''"
+              >
+                <span
+                  class="timeline-dot w-10 h-10 rounded-full bg-white border-2 border-slate-200 grid place-items-center font-bold text-slate-700 transition-all relative z-10"
+                  x-text="i+1"
+                ></span>
+                <span
+                  class="mt-2 text-[11px] font-semibold text-slate-700 text-center leading-tight"
+                  x-text="s.t"
+                ></span>
+              </button>
+            </template>
+          </div>
 
-      <!-- Timeline rail -->
-      <div class="hidden md:grid grid-cols-9 gap-2 relative">
-        <div class="absolute left-0 right-0 top-5 h-px bg-slate-200"></div>
-        <template x-for="(s,i) in steps" :key="i">
-          <button @click="step=i" class="timeline-step relative flex flex-col items-center group" :class="step===i ? 'active' : ''">
-            <span class="timeline-dot w-10 h-10 rounded-full bg-white border-2 border-slate-200 grid place-items-center font-bold text-slate-700 transition-all relative z-10" x-text="i+1"></span>
-            <span class="mt-2 text-[11px] font-semibold text-slate-700 text-center leading-tight" x-text="s.t"></span>
-          </button>
-        </template>
-      </div>
+          <!-- Active content -->
+          <div
+            class="mt-8 timeline-content rounded-3xl bg-white border-2 border-slate-100 p-7 md:p-9 shadow-sm transition-colors"
+          >
+            <span
+              class="text-xs font-semibold uppercase tracking-widest text-lime-700"
+              >Step <span x-text="step+1"></span> of 9</span
+            >
+            <h3
+              class="mt-2 text-2xl font-extrabold text-slate-900"
+              x-text="steps[step].t"
+            ></h3>
+            <p
+              class="mt-3 text-gray-600 leading-relaxed"
+              x-text="steps[step].d"
+            ></p>
+            <div class="mt-6 flex items-center gap-3">
+              <button
+                @click="step = (step - 1 + steps.length) % steps.length"
+                class="w-10 h-10 rounded-full border border-slate-200 hover:bg-slate-50 grid place-items-center"
+              >
+                ‹
+              </button>
+              <button
+                @click="step = (step + 1) % steps.length"
+                class="w-10 h-10 rounded-full bg-lime-500 hover:bg-lime-600 text-slate-950 grid place-items-center font-bold"
+              >
+                ›
+              </button>
+            </div>
+          </div>
 
-      <!-- Active content -->
-      <div class="mt-8 timeline-content rounded-3xl bg-white border-2 border-slate-100 p-7 md:p-9 shadow-sm transition-colors">
-        <span class="text-xs font-semibold uppercase tracking-widest text-lime-700">Step <span x-text="step+1"></span> of 9</span>
-        <h3 class="mt-2 text-2xl font-extrabold text-slate-900" x-text="steps[step].t"></h3>
-        <p class="mt-3 text-gray-600 leading-relaxed" x-text="steps[step].d"></p>
-        <div class="mt-6 flex items-center gap-3">
-          <button @click="step = (step - 1 + steps.length) % steps.length" class="w-10 h-10 rounded-full border border-slate-200 hover:bg-slate-50 grid place-items-center">‹</button>
-          <button @click="step = (step + 1) % steps.length" class="w-10 h-10 rounded-full bg-lime-500 hover:bg-lime-600 text-slate-950 grid place-items-center font-bold">›</button>
+          <!-- Mobile list -->
+          <div class="md:hidden mt-8 space-y-2">
+            <template x-for="(s,i) in steps" :key="i">
+              <button
+                @click="step=i"
+                class="w-full text-left flex items-center gap-3 p-3 rounded-xl border"
+                :class="step===i ? 'bg-lime-50 border-lime-300' : 'bg-white border-slate-200'"
+              >
+                <span
+                  class="w-8 h-8 rounded-full grid place-items-center font-bold text-sm"
+                  :class="step===i ? 'bg-lime-500 text-slate-950' : 'bg-slate-100 text-slate-700'"
+                  x-text="i+1"
+                ></span>
+                <span class="font-semibold text-slate-800" x-text="s.t"></span>
+              </button>
+            </template>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Mobile list -->
-      <div class="md:hidden mt-8 space-y-2">
-        <template x-for="(s,i) in steps" :key="i">
-          <button @click="step=i" class="w-full text-left flex items-center gap-3 p-3 rounded-xl border" :class="step===i ? 'bg-lime-50 border-lime-300' : 'bg-white border-slate-200'">
-            <span class="w-8 h-8 rounded-full grid place-items-center font-bold text-sm" :class="step===i ? 'bg-lime-500 text-slate-950' : 'bg-slate-100 text-slate-700'" x-text="i+1"></span>
-            <span class="font-semibold text-slate-800" x-text="s.t"></span>
-          </button>
-        </template>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
+    <!-- ============================================================
      DASHBOARD PREVIEW (Big mockup)
 ============================================================ -->
-<section id="dashboard" class="section bg-gradient-to-b from-lime-50/40 to-white">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200">Dashboard Preview</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">A command center for slope assets</h2>
-      <p class="mt-3 text-gray-600">Real-time visibility across inventory, risk, inspection, and mitigation.</p>
-    </div>
+    <section
+      id="dashboard"
+      class="section bg-gradient-to-b from-lime-50/40 to-white"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
+            >Dashboard Preview</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            A command center for slope assets
+          </h2>
+          <p class="mt-3 text-gray-600">
+            Real-time visibility across inventory, risk, inspection, and
+            mitigation.
+          </p>
+        </div>
 
-    <div class="mt-12 reveal rounded-3xl bg-slate-950 shadow-2xl border border-slate-800 overflow-hidden">
-      <div class="flex items-center gap-2 px-4 py-3 border-b border-slate-800">
-        <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-        <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-        <span class="ml-3 text-xs text-slate-500">lhms.gfm-consult / command-center</span>
-      </div>
-      <div class="grid lg:grid-cols-12 min-h-[520px]">
-        <aside class="lg:col-span-3 bg-slate-900 border-r border-slate-800 p-4 text-sm">
-          <p class="text-xs uppercase tracking-widest text-slate-500">Modules</p>
-          <nav class="mt-3 space-y-1 text-slate-300">
-            <span class="block px-3 py-2 rounded-lg bg-lime-500/15 text-lime-300 font-semibold">▤ Dashboard</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">📦 Slope Inventory</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">⚖️ Slope Priority</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">🔍 Inspection</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">🛡 Preservation</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">🧮 Mitigation Calc</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">🗺 Slope Information</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">📄 Document Publish</span>
-            <span class="block px-3 py-2 rounded-lg hover:bg-slate-800">⚙ Settings</span>
-          </nav>
-        </aside>
-        <div class="lg:col-span-9 p-6 text-slate-200">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <div class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"><p class="text-xs text-slate-500">Total Slopes</p><p class="text-2xl font-extrabold text-white mt-1">248</p></div>
-            <div class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"><p class="text-xs text-slate-500">High Risk</p><p class="text-2xl font-extrabold text-lime-400 mt-1">36</p></div>
-            <div class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"><p class="text-xs text-slate-500">Inspected</p><p class="text-2xl font-extrabold text-emerald-400 mt-1">182</p></div>
-            <div class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"><p class="text-xs text-slate-500">Mitigated</p><p class="text-2xl font-extrabold text-white mt-1">94</p></div>
+        <div
+          class="mt-12 reveal rounded-3xl bg-slate-950 shadow-2xl border border-slate-800 overflow-hidden"
+        >
+          <div
+            class="flex items-center gap-2 px-4 py-3 border-b border-slate-800"
+          >
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span class="ml-3 text-xs text-slate-500"
+              >lhms.gfm-consult / command-center</span
+            >
           </div>
-          <div class="mt-4 grid lg:grid-cols-3 gap-3">
-            <div class="lg:col-span-2 rounded-2xl bg-slate-800/40 border border-slate-700 p-4 h-56 relative overflow-hidden">
-              <p class="text-xs text-slate-400">Slope Risk Trend (2025)</p>
-              <svg viewBox="0 0 400 150" class="absolute inset-x-4 bottom-2 w-[calc(100%-2rem)] h-40">
-                <defs><linearGradient id="lg2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#84cc16" stop-opacity=".5"/><stop offset="1" stop-color="#84cc16" stop-opacity="0"/></linearGradient></defs>
-                <path d="M0,110 C50,80 80,100 130,60 C180,20 220,80 280,40 C320,20 370,55 400,30 L400,150 L0,150 Z" fill="url(#lg2)"/>
-                <path d="M0,110 C50,80 80,100 130,60 C180,20 220,80 280,40 C320,20 370,55 400,30" fill="none" stroke="#84cc16" stroke-width="2"/>
-              </svg>
-            </div>
-            <div class="rounded-2xl bg-slate-800/40 border border-slate-700 p-4">
-              <p class="text-xs text-slate-400">Hazard Classification</p>
-              <div class="mt-3 space-y-2 text-xs">
-                <div><div class="flex justify-between"><span>High</span><span class="text-lime-400">36</span></div><div class="h-1.5 rounded-full bg-slate-700 mt-1"><div class="h-full w-3/5 rounded-full bg-lime-500"></div></div></div>
-                <div><div class="flex justify-between"><span>Medium</span><span class="text-emerald-400">98</span></div><div class="h-1.5 rounded-full bg-slate-700 mt-1"><div class="h-full w-2/3 rounded-full bg-emerald-500"></div></div></div>
-                <div><div class="flex justify-between"><span>Low</span><span class="text-slate-300">114</span></div><div class="h-1.5 rounded-full bg-slate-700 mt-1"><div class="h-full w-4/5 rounded-full bg-slate-400"></div></div></div>
+          <div class="grid lg:grid-cols-12 min-h-[520px]">
+            <aside
+              class="lg:col-span-3 bg-slate-900 border-r border-slate-800 p-4 text-sm"
+            >
+              <p class="text-xs uppercase tracking-widest text-slate-500">
+                Modules
+              </p>
+              <nav class="mt-3 space-y-1 text-slate-300">
+                <span
+                  class="block px-3 py-2 rounded-lg bg-lime-500/15 text-lime-300 font-semibold"
+                  >▤ Dashboard</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >📦 Slope Inventory</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >⚖️ Slope Priority</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >🔍 Inspection</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >🛡 Preservation</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >🧮 Mitigation Calc</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >🗺 Slope Information</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >📄 Document Publish</span
+                >
+                <span class="block px-3 py-2 rounded-lg hover:bg-slate-800"
+                  >⚙ Settings</span
+                >
+              </nav>
+            </aside>
+            <div class="lg:col-span-9 p-6 text-slate-200">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div
+                  class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"
+                >
+                  <p class="text-xs text-slate-500">Total Slopes</p>
+                  <p class="text-2xl font-extrabold text-white mt-1">248</p>
+                </div>
+                <div
+                  class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"
+                >
+                  <p class="text-xs text-slate-500">High Risk</p>
+                  <p class="text-2xl font-extrabold text-lime-400 mt-1">36</p>
+                </div>
+                <div
+                  class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"
+                >
+                  <p class="text-xs text-slate-500">Inspected</p>
+                  <p class="text-2xl font-extrabold text-emerald-400 mt-1">
+                    182
+                  </p>
+                </div>
+                <div
+                  class="rounded-2xl bg-slate-800/50 p-4 border border-slate-700"
+                >
+                  <p class="text-xs text-slate-500">Mitigated</p>
+                  <p class="text-2xl font-extrabold text-white mt-1">94</p>
+                </div>
+              </div>
+              <div class="mt-4 grid lg:grid-cols-3 gap-3">
+                <div
+                  class="lg:col-span-2 rounded-2xl bg-slate-800/40 border border-slate-700 p-4 h-56 relative overflow-hidden"
+                >
+                  <p class="text-xs text-slate-400">Slope Risk Trend (2025)</p>
+                  <svg
+                    viewBox="0 0 400 150"
+                    class="absolute inset-x-4 bottom-2 w-[calc(100%-2rem)] h-40"
+                  >
+                    <defs>
+                      <linearGradient id="lg2" x1="0" x2="0" y1="0" y2="1">
+                        <stop
+                          offset="0"
+                          stop-color="#84cc16"
+                          stop-opacity=".5"
+                        />
+                        <stop
+                          offset="1"
+                          stop-color="#84cc16"
+                          stop-opacity="0"
+                        />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M0,110 C50,80 80,100 130,60 C180,20 220,80 280,40 C320,20 370,55 400,30 L400,150 L0,150 Z"
+                      fill="url(#lg2)"
+                    />
+                    <path
+                      d="M0,110 C50,80 80,100 130,60 C180,20 220,80 280,40 C320,20 370,55 400,30"
+                      fill="none"
+                      stroke="#84cc16"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="rounded-2xl bg-slate-800/40 border border-slate-700 p-4"
+                >
+                  <p class="text-xs text-slate-400">Hazard Classification</p>
+                  <div class="mt-3 space-y-2 text-xs">
+                    <div>
+                      <div class="flex justify-between">
+                        <span>High</span><span class="text-lime-400">36</span>
+                      </div>
+                      <div class="h-1.5 rounded-full bg-slate-700 mt-1">
+                        <div
+                          class="h-full w-3/5 rounded-full bg-lime-500"
+                        ></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between">
+                        <span>Medium</span
+                        ><span class="text-emerald-400">98</span>
+                      </div>
+                      <div class="h-1.5 rounded-full bg-slate-700 mt-1">
+                        <div
+                          class="h-full w-2/3 rounded-full bg-emerald-500"
+                        ></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between">
+                        <span>Low</span><span class="text-slate-300">114</span>
+                      </div>
+                      <div class="h-1.5 rounded-full bg-slate-700 mt-1">
+                        <div
+                          class="h-full w-4/5 rounded-full bg-slate-400"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="mt-4 rounded-2xl bg-slate-800/40 border border-slate-700 p-4"
+              >
+                <p class="text-xs text-slate-400">Recent Inspections</p>
+                <div class="mt-3 grid md:grid-cols-3 gap-3 text-xs">
+                  <div class="rounded-xl bg-slate-900 p-3">
+                    <p class="font-semibold text-white">Slope #A-042</p>
+                    <p class="text-slate-400 mt-1">
+                      Tol Semarang–Batang · routine
+                    </p>
+                  </div>
+                  <div class="rounded-xl bg-slate-900 p-3">
+                    <p class="font-semibold text-white">Slope #B-118</p>
+                    <p class="text-slate-400 mt-1">
+                      Tol Cinere–Serpong · engineering
+                    </p>
+                  </div>
+                  <div class="rounded-xl bg-slate-900 p-3">
+                    <p class="font-semibold text-white">Slope #C-007</p>
+                    <p class="text-slate-400 mt-1">IKN Access Road · routine</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="mt-4 rounded-2xl bg-slate-800/40 border border-slate-700 p-4">
-            <p class="text-xs text-slate-400">Recent Inspections</p>
-            <div class="mt-3 grid md:grid-cols-3 gap-3 text-xs">
-              <div class="rounded-xl bg-slate-900 p-3"><p class="font-semibold text-white">Slope #A-042</p><p class="text-slate-400 mt-1">Tol Semarang–Batang · routine</p></div>
-              <div class="rounded-xl bg-slate-900 p-3"><p class="font-semibold text-white">Slope #B-118</p><p class="text-slate-400 mt-1">Tol Cinere–Serpong · engineering</p></div>
-              <div class="rounded-xl bg-slate-900 p-3"><p class="font-semibold text-white">Slope #C-007</p><p class="text-slate-400 mt-1">IKN Access Road · routine</p></div>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      DOCUMENTS & NOTIFICATIONS
 ============================================================ -->
-<section id="documents" class="section">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="text-center max-w-3xl mx-auto reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200">Documents & Notifications</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">Stay informed, stay compliant</h2>
-    </div>
-    <div x-data class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
-      <template x-for="(d,i) in [
+    <section id="documents" class="section">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
+            >Documents & Notifications</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            Stay informed, stay compliant
+          </h2>
+        </div>
+        <div
+          x-data
+          class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5 reveal"
+        >
+          <template
+            x-for="(d,i) in [
         {t:'What\'s New', d:'Release notes & system updates.', i:'🆕'},
         {t:'Inspection Schedule Notification', d:'Automated reminder untuk jadwal inspeksi.', i:'🔔'},
         {t:'About System', d:'Penjelasan modul & arsitektur platform.', i:'ℹ️'},
         {t:'Document Publish', d:'Laporan, sertifikasi, dan dokumen publik.', i:'📄'},
         {t:'Manual Book', d:'Panduan operasional untuk setiap role.', i:'📘'},
         {t:'Standard & Reference', d:'Standar teknis & referensi engineering.', i:'📚'}
-      ]" :key="i">
-        <div class="lift rounded-3xl bg-white border border-slate-100 shadow-sm p-6">
-          <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 grid place-items-center text-xl" x-text="d.i"></div>
-          <h3 class="mt-4 font-bold text-slate-900" x-text="d.t"></h3>
-          <p class="mt-2 text-sm text-gray-600" x-text="d.d"></p>
-          <a href="#" class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-lime-700 hover:text-lime-800">Open →</a>
+      ]"
+            :key="i"
+          >
+            <div
+              class="lift rounded-3xl bg-white border border-slate-100 shadow-sm p-6"
+            >
+              <div
+                class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 grid place-items-center text-xl"
+                x-text="d.i"
+              ></div>
+              <h3 class="mt-4 font-bold text-slate-900" x-text="d.t"></h3>
+              <p class="mt-2 text-sm text-gray-600" x-text="d.d"></p>
+              <a
+                href="#"
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-lime-700 hover:text-lime-800"
+                >Open →</a
+              >
+            </div>
+          </template>
         </div>
-      </template>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      FAQ
 ============================================================ -->
-<section id="faq" class="section bg-gradient-to-b from-white to-lime-50/40">
-  <div class="max-w-4xl mx-auto px-5 lg:px-8">
-    <div class="text-center reveal">
-      <span class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200">FAQ</span>
-      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">LHMS — answered</h2>
-    </div>
-    <div x-data="{ open: 0 }" class="mt-10 space-y-3 reveal">
-      <template x-for="(f,idx) in [
+    <section id="faq" class="section bg-gradient-to-b from-white to-lime-50/40">
+      <div class="max-w-4xl mx-auto px-5 lg:px-8">
+        <div class="text-center reveal">
+          <span
+            class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
+            >FAQ</span
+          >
+          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
+            LHMS — answered
+          </h2>
+        </div>
+        <div x-data="{ open: 0 }" class="mt-10 space-y-3 reveal">
+          <template
+            x-for="(f,idx) in [
         {q:'What is LHMS?', a:'LHMS (Landslide Hazard & Monitoring System) is a web-based slope management platform for inventory, risk assessment, inspection, preservation, mitigation, and GIS-based slope information.'},
         {q:'Who can use LHMS?', a:'Asset owners, infrastructure operators, contractors, and engineering teams managing slope assets. Roles include Manager, Engineer, Inspector, and Visitor.'},
         {q:'What data can be managed?', a:'Slope geometry, geological features, construction details, disaster history, inspection logs, mitigation plans, and associated documentation.'},
         {q:'Does LHMS support GIS?', a:'Yes. The Slope Information module provides a WebGIS map for spatial visualization of slopes, status, documents, and mitigation plans.'},
         {q:'Can LHMS calculate mitigation cost?', a:'Yes. The Mitigation Calculation module estimates maintenance, preservation, reinforcement, and remedial costs per slope.'},
         {q:'How does account hierarchy work?', a:'Manager controls budget and approvals; Engineer validates and approves inspector data; Inspector inputs field data with approval; Visitor has read-only access.'}
-      ]" :key="idx">
-        <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden">
-          <button @click="open = (open===idx ? -1 : idx)" class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left">
-            <span class="font-semibold text-slate-900" x-text="f.q"></span>
-            <span class="w-8 h-8 rounded-full bg-lime-100 text-lime-700 grid place-items-center transition-transform" :class="open===idx ? 'rotate-45' : ''">+</span>
-          </button>
-          <div x-show="open===idx" x-collapse class="px-5 pb-5 text-gray-600" x-text="f.a"></div>
+      ]"
+            :key="idx"
+          >
+            <div
+              class="rounded-2xl border border-slate-200 bg-white overflow-hidden"
+            >
+              <button
+                @click="open = (open===idx ? -1 : idx)"
+                class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+              >
+                <span class="font-semibold text-slate-900" x-text="f.q"></span>
+                <span
+                  class="w-8 h-8 rounded-full bg-lime-100 text-lime-700 grid place-items-center transition-transform"
+                  :class="open===idx ? 'rotate-45' : ''"
+                  >+</span
+                >
+              </button>
+              <div
+                x-show="open===idx"
+                x-collapse
+                class="px-5 pb-5 text-gray-600"
+                x-text="f.a"
+              ></div>
+            </div>
+          </template>
         </div>
-      </template>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      CONTACT CTA
 ============================================================ -->
-<section id="cta" class="section">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="relative overflow-hidden rounded-3xl bg-slate-950 text-white p-10 md:p-16 reveal">
-      <div class="blob bg-lime-500/30 w-96 h-96 -top-20 -right-20"></div>
-      <div class="relative grid lg:grid-cols-2 gap-10 items-center">
-        <div>
-          <span class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20">Ready to start?</span>
-          <h2 class="mt-4 text-3xl md:text-4xl font-extrabold leading-tight">Bring LHMS to your slope portfolio.</h2>
-          <p class="mt-4 text-slate-300 max-w-xl">Reach out to GFM Consult for demo access, onboarding, and tailored deployment.</p>
-        </div>
-        <div class="flex flex-wrap gap-3 lg:justify-end">
-          <a href="index.html#contact" class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3.5 rounded-full">Contact GFM →</a>
-          <a href="index.html" class="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-full">← Company Profile</a>
+    <section id="cta" class="section">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div
+          class="relative overflow-hidden rounded-3xl bg-slate-950 text-white p-10 md:p-16 reveal"
+        >
+          <div class="blob bg-lime-500/30 w-96 h-96 -top-20 -right-20"></div>
+          <div class="relative grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <span
+                class="inline-block px-3 py-1 rounded-full bg-lime-400/10 text-lime-300 text-xs font-semibold uppercase tracking-wider border border-lime-400/20"
+                >Ready to start?</span
+              >
+              <h2
+                class="mt-4 text-3xl md:text-4xl font-extrabold leading-tight"
+              >
+                Bring LHMS to your slope portfolio.
+              </h2>
+              <p class="mt-4 text-slate-300 max-w-xl">
+                Reach out to GFM Consult for demo access, onboarding, and
+                tailored deployment.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3 lg:justify-end">
+              <a
+                href="index.html#contact"
+                class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3.5 rounded-full"
+                >Contact GFM →</a
+              >
+              <a
+                href="index.html"
+                class="inline-flex items-center gap-2 border border-white/20 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-full"
+                >← Company Profile</a
+              >
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      FOOTER
 ============================================================ -->
-<footer class="bg-slate-950 text-slate-300 border-t border-white/10">
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14 grid md:grid-cols-4 gap-10">
-    <div class="md:col-span-2">
-      <div class="flex items-center gap-2.5">
-        <span class="w-10 h-10 rounded-xl bg-lime-400 grid place-items-center text-slate-950 font-extrabold text-lg">L</span>
-        <span class="leading-tight">
-          <span class="block font-bold text-white">LHMS</span>
-          <span class="block text-[10px] uppercase tracking-widest text-slate-400">Landslide Hazard & Monitoring System</span>
-        </span>
+    <footer class="bg-slate-950 text-slate-300 border-t border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-8 py-14 grid md:grid-cols-4 gap-10"
+      >
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <span
+              class="w-10 h-10 rounded-xl bg-lime-400 grid place-items-center text-slate-950 font-extrabold text-lg"
+              >L</span
+            >
+            <span class="leading-tight">
+              <span class="block font-bold text-white">LHMS</span>
+              <span
+                class="block text-[10px] uppercase tracking-widest text-slate-400"
+                >Landslide Hazard & Monitoring System</span
+              >
+            </span>
+          </div>
+          <p class="mt-5 text-sm text-slate-400 max-w-md leading-relaxed">
+            A digital slope management platform by PT Geo-Fondasi Multi
+            Konsultan (GFM Consult).
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">System</p>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li>
+              <a href="#features" class="hover:text-lime-400">Features</a>
+            </li>
+            <li>
+              <a href="#workflow" class="hover:text-lime-400">Workflow</a>
+            </li>
+            <li>
+              <a href="#dashboard" class="hover:text-lime-400">Dashboard</a>
+            </li>
+            <li>
+              <a href="#documents" class="hover:text-lime-400">Documents</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">GFM Consult</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-400">
+            <li>
+              <a href="index.html" class="hover:text-lime-400"
+                >Company Profile</a
+              >
+            </li>
+            <li>
+              <a href="index.html#contact" class="hover:text-lime-400"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a href="mailto:malik@gfm-consult.com" class="hover:text-lime-400"
+                >malik@gfm-consult.com</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
-      <p class="mt-5 text-sm text-slate-400 max-w-md leading-relaxed">A digital slope management platform by PT Geo-Fondasi Multi Konsultan (GFM Consult).</p>
-    </div>
-    <div>
-      <p class="text-sm font-bold text-white">System</p>
-      <ul class="mt-4 space-y-2 text-sm">
-        <li><a href="#features" class="hover:text-lime-400">Features</a></li>
-        <li><a href="#workflow" class="hover:text-lime-400">Workflow</a></li>
-        <li><a href="#dashboard" class="hover:text-lime-400">Dashboard</a></li>
-        <li><a href="#documents" class="hover:text-lime-400">Documents</a></li>
-      </ul>
-    </div>
-    <div>
-      <p class="text-sm font-bold text-white">GFM Consult</p>
-      <ul class="mt-4 space-y-2 text-sm text-slate-400">
-        <li><a href="index.html" class="hover:text-lime-400">Company Profile</a></li>
-        <li><a href="index.html#contact" class="hover:text-lime-400">Contact</a></li>
-        <li><a href="mailto:malik@gfm-consult.com" class="hover:text-lime-400">malik@gfm-consult.com</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-5 text-xs text-slate-500 text-center">
-      © <span id="year">2025</span> LHMS by GFM Consult. All rights reserved.
-    </div>
-  </div>
-</footer>
+      <div class="border-t border-white/10">
+        <div
+          class="max-w-7xl mx-auto px-5 lg:px-8 py-5 text-xs text-slate-500 text-center"
+        >
+          © <span id="year">2025</span> LHMS by GFM Consult. All rights
+          reserved.
+        </div>
+      </div>
+    </footer>
 
-
-<!-- ============================================================
+    <!-- ============================================================
      STICKY CTA MOBILE
 ============================================================ -->
-<div class="lg:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-white/95 backdrop-blur border-t border-slate-200 flex gap-2 no-print">
-  <a href="index.html" class="flex-1 text-center border border-slate-200 text-slate-800 font-semibold py-2.5 rounded-full text-sm">← Profile</a>
-  <a href="index.html#contact" class="flex-1 text-center bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold py-2.5 rounded-full text-sm">Contact GFM</a>
-</div>
+    <div
+      class="lg:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-white/95 backdrop-blur border-t border-slate-200 flex gap-2 no-print"
+    >
+      <a
+        href="index.html"
+        class="flex-1 text-center border border-slate-200 text-slate-800 font-semibold py-2.5 rounded-full text-sm"
+        >← Profile</a
+      >
+      <a
+        href="index.html#contact"
+        class="flex-1 text-center bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold py-2.5 rounded-full text-sm"
+        >Contact GFM</a
+      >
+    </div>
 
+    <!-- Floating WhatsApp + back to top -->
+    <div
+      x-data="{ show: false }"
+      x-init="window.addEventListener('scroll', () => show = window.scrollY > 600)"
+      class="fixed bottom-20 lg:bottom-6 right-5 z-40 flex flex-col items-end gap-3 no-print"
+    >
+      <a
+        href="https://wa.me/6282135057849"
+        target="_blank"
+        rel="noopener"
+        aria-label="WhatsApp GFM"
+        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg hover:shadow-xl transition-all"
+      >
+        <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
+          <path
+            d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.53 0 .22 5.3.22 11.83c0 2.08.55 4.11 1.6 5.9L0 24l6.4-1.68a11.81 11.81 0 0 0 5.66 1.44h.01c6.53 0 11.83-5.3 11.83-11.83a11.74 11.74 0 0 0-3.38-8.45ZM12.07 21.7h-.01a9.84 9.84 0 0 1-5.02-1.38l-.36-.21-3.8 1 1.02-3.7-.24-.38a9.83 9.83 0 1 1 18.23-5.2 9.83 9.83 0 0 1-9.82 9.87Zm5.4-7.36c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07a8.1 8.1 0 0 1-2.39-1.47 8.92 8.92 0 0 1-1.65-2.06c-.17-.3 0-.46.13-.6.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.5.07-.77.37-.27.3-1.02 1-1.02 2.43 0 1.44 1.05 2.83 1.2 3.03.15.2 2.06 3.16 5 4.43.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.41-.07-.12-.27-.2-.57-.34Z"
+          />
+        </svg>
+      </a>
+      <button
+        x-show="show"
+        x-transition
+        @click="window.scrollTo({top:0, behavior:'smooth'})"
+        aria-label="Back to top"
+        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 hover:bg-slate-800 text-lime-400 shadow-lg hover:shadow-xl transition-all"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 15l7-7 7 7"
+          />
+        </svg>
+      </button>
+    </div>
 
-<!-- Floating WhatsApp + back to top -->
-<div x-data="{ show: false }" x-init="window.addEventListener('scroll', () => show = window.scrollY > 600)"
-     class="fixed bottom-20 lg:bottom-6 right-5 z-40 flex flex-col items-end gap-3 no-print">
-  <a href="https://wa.me/6282135057849" target="_blank" rel="noopener" aria-label="WhatsApp GFM"
-     class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg hover:shadow-xl transition-all">
-    <svg viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.53 0 .22 5.3.22 11.83c0 2.08.55 4.11 1.6 5.9L0 24l6.4-1.68a11.81 11.81 0 0 0 5.66 1.44h.01c6.53 0 11.83-5.3 11.83-11.83a11.74 11.74 0 0 0-3.38-8.45ZM12.07 21.7h-.01a9.84 9.84 0 0 1-5.02-1.38l-.36-.21-3.8 1 1.02-3.7-.24-.38a9.83 9.83 0 1 1 18.23-5.2 9.83 9.83 0 0 1-9.82 9.87Zm5.4-7.36c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07a8.1 8.1 0 0 1-2.39-1.47 8.92 8.92 0 0 1-1.65-2.06c-.17-.3 0-.46.13-.6.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.5.07-.77.37-.27.3-1.02 1-1.02 2.43 0 1.44 1.05 2.83 1.2 3.03.15.2 2.06 3.16 5 4.43.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.76-.72 2.01-1.41.25-.7.25-1.3.17-1.41-.07-.12-.27-.2-.57-.34Z"/></svg>
-  </a>
-  <button x-show="show" x-transition @click="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top"
-          class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 hover:bg-slate-800 text-lime-400 shadow-lg hover:shadow-xl transition-all">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
-  </button>
-</div>
-
-<script src="assets/js/main.js"></script>
-</body>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
