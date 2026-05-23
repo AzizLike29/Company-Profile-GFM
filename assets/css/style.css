@@ -61,6 +61,60 @@ body {
   background-size: 48px 48px;
 }
 
+/* Text More */
+.team-desc-wrapper {
+  margin-top: 0.75rem;
+}
+
+.team-desc {
+  color: #475569;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.team-desc-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.team-desc-full {
+  display: block;
+  overflow: visible;
+}
+
+.team-desc-btn {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.team-desc-btn:hover {
+  color: #1e40af;
+}
+
+.team-desc-btn:focus {
+  outline: none;
+}
+
+.team-desc-btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 /* ===== Hover Lift Card ===== */
 .lift {
   transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;

@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latest News - LHMS | GFM Consult</title>
+    <meta
+      name="description"
+      content="LHMS News - Latest updates, releases, and announcements about the Landslide Hazard & Monitoring System."
+    />
+    <meta name="theme-color" content="#84cc16" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter", "system-ui", "sans-serif"] },
+            colors: {
+              brand: { lime: "#84cc16", emerald: "#10b981", deep: "#0f172a" },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Alpine.js CDN -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/icons/sistem-lhms.jpeg" />
+    <link
+      rel="shortcut icon"
+      type="image/jpeg"
+      href="assets/icons/sistem-lhms.jpeg"
+    />
+    <link rel="apple-touch-icon" href="assets/icons/sistem-lhms.jpeg" />
+  </head>
+
+  <body class="bg-white text-slate-900 antialiased">
+    <!-- ============================================================
+     NAVBAR
+============================================================ -->
+    <nav
+      x-data="{ open: false, scrolled: false }"
+      x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 20)"
+      :class="scrolled ? 'backdrop-blur-md bg-white/80 border-slate-200 shadow-sm' : 'bg-transparent border-transparent'"
+      class="fixed top-0 inset-x-0 z-50 border-b transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="flex items-center justify-between h-16 lg:h-20">
+          <a href="lhms.html" class="flex items-center gap-2.5 group">
+            <span
+              class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-slate-200 inline-flex items-center justify-center shadow-md overflow-hidden"
+            >
+              <img
+                src="assets/icons/sistem-lhms.jpeg"
+                alt="LHMS system logo"
+                class="w-full h-full object-contain"
+              />
+            </span>
+            <span class="leading-tight">
+              <span class="block font-bold text-slate-900">LHMS</span>
+              <span
+                class="block text-[10px] uppercase tracking-widest text-slate-500"
+                >by GFM Consult</span
+              >
+            </span>
+          </a>
+
+          <div class="hidden lg:flex items-center gap-3">
+            <a
+              href="lhms.html"
+              class="text-sm font-semibold text-slate-700 hover:text-lime-700"
+              >← Back to LHMS</a
+            >
+            <a
+              href="index.html"
+              class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold text-sm px-5 py-2.5 rounded-full transition-all"
+              >Company Profile</a
+            >
+          </div>
+
+          <button
+            @click="open = !open"
+            :aria-expanded="open"
+            aria-label="Toggle navigation"
+            class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-slate-200 text-slate-700"
+          >
+            <svg
+              x-show="!open"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <svg
+              x-show="open"
+              style="display: none"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div
+          x-show="open"
+          x-transition
+          style="display: none"
+          class="lg:hidden pb-4"
+        >
+          <ul
+            class="flex flex-col gap-1 bg-white border border-slate-200 rounded-2xl p-3 shadow-lg"
+          >
+            <li>
+              <a
+                @click="open=false"
+                href="lhms.html"
+                class="block px-4 py-2.5 rounded-lg hover:bg-lime-50"
+                >← Back to LHMS</a
+              >
+            </li>
+            <li>
+              <a
+                @click="open=false"
+                href="index.html"
+                class="block px-4 py-2.5 rounded-lg bg-slate-100 font-semibold"
+                >Company Profile</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+     HERO / NEWS LIST
+============================================================ -->
+    <section
+      class="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden bg-grid"
+    >
+      <div class="blob bg-blue-200 w-72 h-72 -top-20 -left-20"></div>
+      <div
+        class="blob bg-cyan-200 w-96 h-96 top-40 -right-32"
+        style="animation-delay: -7s"
+      ></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="reveal">
+          <span
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold tracking-wide"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"
+            ></span>
+            News & Updates
+          </span>
+          <h1
+            class="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
+          >
+            Latest 📰 News
+          </h1>
+          <p class="mt-6 text-lg text-gray-600 max-w-xl leading-relaxed">
+            Stay updated with the latest releases, announcements, and news about
+            LHMS and slope management innovations.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a
+              href="lhms.html#feed"
+              class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-3.5 rounded-full transition-all shadow-lg"
+            >
+              ← Back to Feed
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     NEWS ARTICLES GRID
+============================================================ -->
+    <section class="py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-5 lg:px-8">
+        <div class="space-y-8 reveal">
+          <!-- News Item 1 -->
+          <article
+            class="rounded-3xl bg-gradient-to-br from-blue-50 to-white border border-blue-200 shadow-sm overflow-hidden hover:shadow-md transition-all"
+          >
+            <div class="p-8 md:p-10">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">📰</span>
+                <span
+                  class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wider"
+                  >News</span
+                >
+                <span class="text-sm text-slate-500">May 20, 2026</span>
+              </div>
+              <h2
+                class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4"
+              >
+                LHMS Release v1.5 Now Available
+              </h2>
+              <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                We're excited to announce the release of LHMS v1.5, packed with
+                powerful new features and improvements designed to enhance your
+                slope management experience.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-6 my-8">
+                <div class="rounded-2xl bg-white border border-blue-100 p-6">
+                  <h3 class="text-lg font-bold text-slate-900 mb-3">
+                    ✨ New Features
+                  </h3>
+                  <ul class="space-y-2 text-sm text-gray-600">
+                    <li>✓ Advanced slope visualization with 3D rendering</li>
+                    <li>✓ Real-time hazard mapping and analytics</li>
+                    <li>
+                      ✓ Streamlined inspection workflow with mobile support
+                    </li>
+                    <li>
+                      ✓ Enhanced WebGIS with satellite imagery integration
+                    </li>
+                  </ul>
+                </div>
+                <div class="rounded-2xl bg-white border border-blue-100 p-6">
+                  <h3 class="text-lg font-bold text-slate-900 mb-3">
+                    ⚡ Improvements
+                  </h3>
+                  <ul class="space-y-2 text-sm text-gray-600">
+                    <li>✓ 40% faster dashboard loading time</li>
+                    <li>✓ Improved system stability and reliability</li>
+                    <li>✓ Better data export formats (PDF, Excel, GeoJSON)</li>
+                    <li>✓ Enhanced user interface and UX</li>
+                  </ul>
+                </div>
+              </div>
+
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Version 1.5 represents a major milestone in LHMS development.
+                Based on feedback from thousands of users, we've rebuilt
+                critical components to deliver faster performance, better
+                usability, and more powerful tools for slope asset management.
+              </p>
+
+              <div
+                class="rounded-2xl bg-blue-50 border border-blue-200 p-6 mb-6"
+              >
+                <p class="text-sm text-blue-900">
+                  <strong>Upgrade now:</strong> All existing customers can
+                  upgrade free of charge. Contact your account manager or visit
+                  our support portal for installation guidance.
+                </p>
+              </div>
+
+              <a
+                href="lhms.html#feed"
+                class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full transition-all"
+              >
+                Back to News Feed
+              </a>
+            </div>
+          </article>
+
+          <!-- News Item 2 -->
+          <article
+            class="rounded-3xl bg-gradient-to-br from-cyan-50 to-white border border-cyan-200 shadow-sm overflow-hidden hover:shadow-md transition-all"
+          >
+            <div class="p-8 md:p-10">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">📰</span>
+                <span
+                  class="inline-block px-3 py-1 rounded-full bg-cyan-100 text-cyan-700 text-xs font-semibold uppercase tracking-wider"
+                  >News</span
+                >
+                <span class="text-sm text-slate-500">May 10, 2026</span>
+              </div>
+              <h2
+                class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4"
+              >
+                GFM Consult Launches WebGIS Dashboard
+              </h2>
+              <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                GFM Consult is proud to unveil the next generation of spatial
+                slope monitoring with our new WebGIS Dashboard, now integrated
+                directly into LHMS.
+              </p>
+
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                The WebGIS dashboard provides real-time slope monitoring and
+                spatial visualization for comprehensive asset management. Users
+                can now:
+              </p>
+
+              <ul class="space-y-3 text-gray-600 mb-8">
+                <li class="flex items-start gap-3">
+                  <span class="text-blue-500 font-bold mt-1">→</span>
+                  <span
+                    >Visualize slopes on interactive maps with real-time hazard
+                    overlays</span
+                  >
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-blue-500 font-bold mt-1">→</span>
+                  <span>Export maps and reports in multiple formats</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-blue-500 font-bold mt-1">→</span>
+                  <span>Integrate satellite imagery and terrain models</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-blue-500 font-bold mt-1">→</span>
+                  <span
+                    >Support for collaborative analysis and
+                    decision-making</span
+                  >
+                </li>
+              </ul>
+
+              <a
+                href="lhms.html#feed"
+                class="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-6 py-3 rounded-full transition-all"
+              >
+                Back to News Feed
+              </a>
+            </div>
+          </article>
+
+          <!-- News Item 3 -->
+          <article
+            class="rounded-3xl bg-gradient-to-br from-teal-50 to-white border border-teal-200 shadow-sm overflow-hidden hover:shadow-md transition-all"
+          >
+            <div class="p-8 md:p-10">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">📰</span>
+                <span
+                  class="inline-block px-3 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold uppercase tracking-wider"
+                  >News</span
+                >
+                <span class="text-sm text-slate-500">May 5, 2026</span>
+              </div>
+              <h2
+                class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4"
+              >
+                Partnership Announcement: Infrastructure Authority
+              </h2>
+              <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                LHMS has been officially selected as the slope management system
+                for the national infrastructure monitoring program.
+              </p>
+
+              <div class="rounded-2xl bg-white border border-teal-100 p-6 mb-6">
+                <p class="text-gray-700 leading-relaxed">
+                  This strategic partnership represents a major endorsement of
+                  LHMS technology and its effectiveness in managing complex
+                  slope networks. The national infrastructure program will use
+                  LHMS to monitor and manage slopes across highways, railways,
+                  and water management infrastructure.
+                </p>
+              </div>
+
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                Key benefits of this partnership:
+              </p>
+
+              <ul class="space-y-2 text-gray-600 mb-8">
+                <li>✓ Deployment across 5,000+ slope assets nationwide</li>
+                <li>✓ Real-time monitoring and decision support</li>
+                <li>✓ Integration with national disaster management systems</li>
+                <li>✓ Training and support for 500+ government personnel</li>
+              </ul>
+
+              <a
+                href="lhms.html#feed"
+                class="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-full transition-all"
+              >
+                Back to News Feed
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     FOOTER
+============================================================ -->
+    <footer class="bg-slate-950 text-slate-300 border-t border-white/10">
+      <div
+        class="max-w-7xl mx-auto px-5 lg:px-8 py-14 grid md:grid-cols-4 gap-10"
+      >
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <span
+              class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-white/15 inline-flex items-center justify-center shadow-sm overflow-hidden"
+            >
+              <img
+                src="assets/icons/sistem-lhms.jpeg"
+                alt="LHMS system logo"
+                class="w-full h-full object-contain"
+              />
+            </span>
+            <span class="leading-tight">
+              <span class="block font-bold text-white">LHMS</span>
+              <span
+                class="block text-[10px] uppercase tracking-widest text-slate-400"
+                >Landslide Hazard & Monitoring System</span
+              >
+            </span>
+          </div>
+          <p class="mt-5 text-sm text-slate-400 max-w-md leading-relaxed">
+            A digital slope management platform by PT Geo-Fondasi Multi
+            Konsultan (GFM Consult).
+          </p>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">System</p>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li>
+              <a href="lhms.html#features" class="hover:text-lime-400"
+                >Features</a
+              >
+            </li>
+            <li>
+              <a href="lhms.html#workflow" class="hover:text-lime-400"
+                >Workflow</a
+              >
+            </li>
+            <li>
+              <a href="lhms.html#feed" class="hover:text-lime-400">Feed</a>
+            </li>
+            <li>
+              <a href="lhms.html#dashboard" class="hover:text-lime-400"
+                >Dashboard</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-sm font-bold text-white">GFM Consult</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-400">
+            <li>
+              <a href="index.html" class="hover:text-lime-400"
+                >Company Profile</a
+              >
+            </li>
+            <li>
+              <a href="index.html#contact" class="hover:text-lime-400"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a href="mailto:malik@gfm-consult.com" class="hover:text-lime-400"
+                >malik@gfm-consult.com</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10">
+        <div
+          class="max-w-7xl mx-auto px-5 lg:px-8 py-5 text-xs text-slate-500 text-center"
+        >
+          © <span id="year">2025</span> LHMS by GFM Consult. All rights
+          reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+     STICKY CTA MOBILE
+============================================================ -->
+    <div
+      class="lg:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-white/95 backdrop-blur border-t border-slate-200 flex gap-2 no-print"
+    >
+      <a
+        href="lhms.html#feed"
+        class="flex-1 text-center border border-slate-200 text-slate-800 font-semibold py-2.5 rounded-full text-sm"
+        >← Feed</a
+      >
+      <a
+        href="index.html"
+        class="flex-1 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2.5 rounded-full text-sm"
+        >Profile</a
+      >
+    </div>
+
+    <!-- Back to top -->
+    <div
+      x-data="{ show: false }"
+      x-init="window.addEventListener('scroll', () => show = window.scrollY > 600)"
+      class="fixed bottom-20 lg:bottom-6 right-5 z-40 flex flex-col items-end gap-3 no-print"
+    >
+      <button
+        x-show="show"
+        x-transition
+        @click="window.scrollTo({top:0, behavior:'smooth'})"
+        aria-label="Back to top"
+        class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-slate-900 hover:bg-slate-800 text-blue-400 shadow-lg hover:shadow-xl transition-all"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 15l7-7 7 7"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

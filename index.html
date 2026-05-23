@@ -43,9 +43,13 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="assets/icons/company-gfm.jpeg" />
-    <link rel="shortcut icon" type="image/jpeg" href="assets/icons/company-gfm.jpeg" />
-    <link rel="apple-touch-icon" href="assets/icons/company-gfm.jpeg" />
+    <link rel="icon" type="image/png" href="assets/icons/company-gfm.png" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="assets/icons/company-gfm.png"
+    />
+    <link rel="apple-touch-icon" href="assets/icons/company-gfm.png" />
   </head>
 
   <body class="bg-white text-slate-900 antialiased">
@@ -66,7 +70,7 @@
               class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-slate-200 inline-flex items-center justify-center shadow-md group-hover:rotate-3 transition-transform overflow-hidden"
             >
               <img
-                src="assets/icons/company-gfm.jpeg"
+                src="assets/icons/company-gfm.png"
                 alt="GFM Consult logo"
                 class="w-full h-full object-contain"
               />
@@ -393,7 +397,7 @@
             Professional Engineer Consultancy Service
           </span>
           <h1
-            class="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
+            class="mt-6 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05] text-slate-900"
           >
             Engineering solutions where
             <span class="text-gradient">uniqueness</span>
@@ -429,7 +433,7 @@
               href="lhms.html"
               class="inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-6 py-3.5 rounded-full transition-all"
             >
-              Explore LHMS
+              About Us
               <svg
                 class="w-4 h-4"
                 fill="none"
@@ -489,88 +493,121 @@
           </div>
         </div>
 
-        <!-- Visual Mockup -->
+        <!-- Engineering Projects Carousel -->
         <div class="lg:col-span-5 reveal">
-          <div class="relative">
+          <div
+            x-data="{
+              current: 0,
+              projects: [
+                {
+                  title: 'Slope Stability Analysis',
+                  desc: 'Geotechnical analysis for slope hazard assessment',
+                  icon: '⛰️',
+                  color: 'from-emerald-500 to-green-600'
+                },
+                {
+                  title: 'Building Information Modeling',
+                  desc: 'Digital construction with BIM coordination',
+                  icon: '🏗️',
+                  color: 'from-blue-500 to-cyan-600'
+                },
+                {
+                  title: 'Foundation Engineering',
+                  desc: 'Deep excavation and foundation design',
+                  icon: '🏢',
+                  color: 'from-slate-600 to-slate-700'
+                },
+                {
+                  title: 'Green Building Analysis',
+                  desc: 'Energy efficiency & sustainable design',
+                  icon: '🌿',
+                  color: 'from-lime-500 to-emerald-600'
+                },
+                {
+                  title: 'Infrastructure Design',
+                  desc: 'Toll roads and infrastructure planning',
+                  icon: '🛣️',
+                  color: 'from-orange-500 to-red-600'
+                }
+              ],
+              init() {
+                setInterval(() => {
+                  this.current = (this.current + 1) % this.projects.length;
+                }, 5000);
+              }
+            }"
+            class="relative"
+          >
+            <!-- Glow Background -->
             <div
               class="absolute -inset-4 bg-gradient-to-br from-lime-200 via-emerald-200 to-transparent rounded-3xl blur-2xl opacity-60"
             ></div>
-            <div class="relative glass rounded-3xl p-5 shadow-2xl">
-              <div class="flex items-center gap-2 mb-4">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                <span class="ml-3 text-xs text-slate-500 font-medium"
-                  >gfm-consult/lhms · live preview</span
-                >
-              </div>
-              <div class="rounded-2xl bg-white border border-slate-100 p-5">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-xs text-slate-500">Slope Risk Index</p>
-                    <p class="text-2xl font-extrabold text-slate-900">
-                      A-2 · Medium
-                    </p>
-                  </div>
-                  <div
-                    class="w-12 h-12 rounded-full bg-lime-100 grid place-items-center text-lime-700 font-bold"
-                  >
-                    ⛰
-                  </div>
-                </div>
-                <div class="grid grid-cols-3 gap-2 mt-4">
-                  <div class="rounded-xl bg-lime-50 p-3">
-                    <p class="text-[10px] text-slate-500">Inventory</p>
-                    <p class="font-bold text-slate-900">248</p>
-                  </div>
-                  <div class="rounded-xl bg-emerald-50 p-3">
-                    <p class="text-[10px] text-slate-500">Inspected</p>
-                    <p class="font-bold text-slate-900">182</p>
-                  </div>
-                  <div class="rounded-xl bg-slate-100 p-3">
-                    <p class="text-[10px] text-slate-500">Mitigated</p>
-                    <p class="font-bold text-slate-900">94</p>
-                  </div>
-                </div>
+
+            <!-- Carousel Container -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+              <!-- Slides -->
+              <template x-for="(project, idx) in projects" :key="idx">
                 <div
-                  class="mt-4 h-24 rounded-xl bg-gradient-to-br from-slate-50 to-lime-50 border border-slate-100 relative overflow-hidden"
+                  x-show="current === idx"
+                  x-transition.opacity.duration.1000ms
+                  :class="'bg-gradient-to-br ' + project.color"
+                  class="absolute inset-0 flex items-center justify-center text-white p-8"
                 >
-                  <svg
-                    viewBox="0 0 200 80"
-                    class="absolute inset-0 w-full h-full"
-                  >
-                    <path
-                      d="M0,60 C30,40 50,55 80,35 C110,15 140,45 200,20 L200,80 L0,80 Z"
-                      fill="url(#g1)"
-                    />
-                    <path
-                      d="M0,60 C30,40 50,55 80,35 C110,15 140,45 200,20"
-                      fill="none"
-                      stroke="#65a30d"
-                      stroke-width="2"
-                    />
-                    <defs>
-                      <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
-                        <stop
-                          offset="0"
-                          stop-color="#84cc16"
-                          stop-opacity=".35"
-                        />
-                        <stop
-                          offset="1"
-                          stop-color="#84cc16"
-                          stop-opacity="0"
-                        />
-                      </linearGradient>
-                    </defs>
-                  </svg>
+                  <div class="text-center">
+                    <div class="text-7xl mb-4" x-text="project.icon"></div>
+                    <h3
+                      class="text-2xl md:text-3xl font-extrabold mb-3"
+                      x-text="project.title"
+                    ></h3>
+                    <p class="text-white/90 text-lg" x-text="project.desc"></p>
+                  </div>
                 </div>
-                <a
-                  href="lhms.html"
-                  class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-lime-700 hover:text-lime-800"
-                >
-                  View System →
-                </a>
+              </template>
+
+              <!-- Aspect Ratio Container -->
+              <div class="aspect-square md:aspect-[4/5]"></div>
+
+              <!-- Navigation Buttons -->
+              <button
+                @click="current = (current - 1 + projects.length) % projects.length"
+                class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 hover:bg-white text-slate-900 grid place-items-center font-bold text-xl transition-all shadow-lg"
+                aria-label="Previous project"
+              >
+                ‹
+              </button>
+              <button
+                @click="current = (current + 1) % projects.length"
+                class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 hover:bg-white text-slate-900 grid place-items-center font-bold text-xl transition-all shadow-lg"
+                aria-label="Next project"
+              >
+                ›
+              </button>
+
+              <!-- Dots Navigation -->
+              <div
+                class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2"
+              >
+                <template x-for="(_, idx) in projects" :key="idx">
+                  <button
+                    @click="current = idx"
+                    :class="
+                      current === idx
+                        ? 'bg-white w-8'
+                        : 'bg-white/50 w-2 hover:bg-white/70'
+                    "
+                    class="h-2 rounded-full transition-all"
+                    :aria-label="'Go to project ' + (idx + 1)"
+                  ></button>
+                </template>
+              </div>
+
+              <!-- Auto-play Indicator -->
+              <div
+                class="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-white/90 text-slate-900 text-xs font-semibold"
+              >
+                <span
+                  x-text="'Project ' + (current + 1) + ' of ' + projects.length"
+                ></span>
               </div>
             </div>
           </div>
@@ -597,13 +634,30 @@
                   class="text-lime-400 text-xs font-semibold uppercase tracking-widest"
                   >About GFM</span
                 >
-                <p class="mt-3 text-2xl text-white font-bold leading-snug">
-                  A civil engineering consultancy where geo-engineering
-                  expertise meets construction digitalization.
+                <p class="mt-3 text-sm text-white/70 leading-snug">
+                  GFM is a civil engineering consulting firm specializing in
+                  Geo-Engineering and Construction Digitalization. We enhance
+                  clients in professional and geotechnical engineering. GFM
+                  provides expertise in landslide assessment and mitigation,
+                  slope stability analysis, geotechnical investigation, ground
+                  improvement, and infrastructure planning that prioritizes
+                  safety, effectiveness, and sustainability. We believe that
+                  every project presents unique challenges, and our innovative
+                  solutions are tailored to the specific considerations of each
+                  client.
                 </p>
                 <p class="mt-3 text-sm text-white/70 leading-relaxed">
-                  Trusted partner in delivering safe, sustainable, and
-                  future-ready infrastructure solutions.
+                  In addition to geotechnical engineering services, GFM supports
+                  clients' digital transformation in the construction industry.
+                  Building Information Modeling (BIM) services include BIM model
+                  development, multidisciplinary design coordination, project
+                  data management, and implementation to improve project
+                  efficiency and quality. GFM also offers Green Building
+                  solutions through Building Energy Analysis and Lighting Design
+                  services to support energy-efficient and environmentally
+                  responsible development. As a customer-oriented company, GFM
+                  emphasizes responsive communication, collaboration, and
+                  professionalism throughout every stage of a project.
                 </p>
               </div>
               <div class="grid grid-cols-2 gap-4 text-white/90">
@@ -639,21 +693,15 @@
             <span class="text-gradient">Geo-Engineering</span> and
             <span class="text-gradient">Construction Digitalization</span>.
           </h2>
+          <!-- who we are -->
           <p class="mt-5 text-gray-600 leading-relaxed">
-            GFM is a civil engineering consulting firm with extensive
-            experience in geological and geotechnical engineering — covering
-            landslide assessment and mitigation, slope stability, geotechnical
-            investigation, ground improvement, and infrastructure planning.
-            Every project is approached as a unique challenge, and every
-            solution is tailored to the specific conditions and objectives of
-            our clients.
-          </p>
-          <p class="mt-4 text-gray-600 leading-relaxed">
-            Beyond geotechnical services, GFM supports the digital
-            transformation of the construction industry through Building
-            Information Modeling (BIM) and complements it with Green Building
-            services — including building energy analysis and lighting design
-            — for energy-efficient, environmentally responsible development.
+            GFM is a civil engineering consulting firm specializing in
+            Geo-Engineering and Construction Digitalization. We assist clients
+            in addressing geotechnical and infrastructure challenges through
+            practical, efficient, and project-oriented engineering solutions. By
+            combining technical expertise, digital technology, and sustainable
+            practices, GFM serves as a trusted partner in delivering safe,
+            modern, and long-term infrastructure solutions.
           </p>
           <ul class="mt-6 space-y-3 text-slate-700">
             <li class="flex gap-3">
@@ -724,14 +772,17 @@
       class="section bg-gradient-to-b from-white via-lime-50/40 to-white"
     >
       <div class="max-w-7xl mx-auto px-5 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto reveal">
+        <div class="text-left max-w-3xl mr-auto reveal">
           <span
             class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
-            >Our Compass</span
           >
+            Our Compass
+          </span>
+
           <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
             Vision & Mission
           </h2>
+
           <p class="mt-3 text-gray-600">
             The principles that drive every engagement at GFM Consult.
           </p>
@@ -746,7 +797,9 @@
             >
               🎯
             </div>
-            <h3 class="mt-5 text-xl font-bold text-slate-900">Our Vision</h3>
+            <h3 class="mt-5 text-2xl md:text-3xl font-bold text-slate-900">
+              Our Vision
+            </h3>
             <p class="mt-3 text-gray-600 leading-relaxed">
               Become an Engineering Consultant Where Uniqueness Meets Ingenuity
               — crafting tailored solutions for a world of infinite
@@ -761,27 +814,28 @@
             >
               🧭
             </div>
-            <h3 class="mt-5 text-xl font-bold">Our Mission</h3>
+            <h3 class="mt-5 text-2xl md:text-3xl font-bold">Our Mission</h3>
             <ul class="mt-4 space-y-3 text-slate-300">
               <li class="flex gap-3">
-                <span class="text-lime-400">›</span> Tailored ingenuity and
-                diversity-driven innovation
+                <span class="text-lime-400">›</span> Delivery engineering
+                solution that are thoughfully designed to address the unique
+                needs and challenges of every project.
               </li>
               <li class="flex gap-3">
-                <span class="text-lime-400">›</span> Client-centric
-                collaboration
+                <span class="text-lime-400">›</span> Build strong partnerships
+                with clients through responsive collaboration, trust, and a
+                clear understanding of their goals.
               </li>
               <li class="flex gap-3">
-                <span class="text-lime-400">›</span> Sustainable engineering
-                solutions
+                <span class="text-lime-400">›</span> Integrate sustainability
+                into every stage of our work to create solutions that provide
+                long-term value for both communities and the environment.
               </li>
               <li class="flex gap-3">
-                <span class="text-lime-400">›</span> Integrity, creativity, and
-                professional excellence
-              </li>
-              <li class="flex gap-3">
-                <span class="text-lime-400">›</span> Creating a legacy of
-                singular excellence in engineering consultancy
+                <span class="text-lime-400">›</span> Uphold the highest
+                standards of professionalism, integrity, and technical
+                excellence to create meaningful and lasting impact in
+                engineering consultancy.
               </li>
             </ul>
           </div>
@@ -797,13 +851,13 @@
         <div class="text-center max-w-3xl mx-auto reveal">
           <span
             class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
-            >What We Do</span
+            >Our Services</span
           >
           <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
             A full spectrum of engineering services
           </h2>
           <p class="mt-3 text-gray-600">
-            Engineering Service, Geotechnical, LHMS, Green Building, and BIM —
+            Engineering Service, Geotechnical, Green Building, BIM, and LHMS —
             under one consultancy roof.
           </p>
         </div>
@@ -826,13 +880,6 @@
               Geotechnical Engineering
             </button>
             <button
-              @click="tab='lhms'"
-              :class="tab==='lhms' ? 'active' : ''"
-              class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
-            >
-              LHMS
-            </button>
-            <button
               @click="tab='green'"
               :class="tab==='green' ? 'active' : ''"
               class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
@@ -846,6 +893,13 @@
             >
               BIM Clinic
             </button>
+            <button
+              @click="tab='lhms'"
+              :class="tab==='lhms' ? 'active' : ''"
+              class="tab-btn border border-slate-200 px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+            >
+              LHMS
+            </button>
           </div>
 
           <!-- Panels -->
@@ -857,19 +911,55 @@
               class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
               <template
-                x-for="item in ['Survey & Identification','Design Concept','Building & Architecture Design','Engineering Analysis','Engineering Cost Analysis','Building Information Modeling','Retrofitting Design']"
+                x-for="item in [
+    {
+      title: 'Survey & Identification',
+      desc: 'Comprehensive site surveys and technical assessments to identify project conditions, potential risks, and engineering constraints as the foundation for effective planning and design.'
+    },
+    {
+      title: 'Design Concept',
+      desc: 'Development of practical and innovative design concepts that align with project objectives, technical requirements, functionality, and sustainability considerations.'
+    },
+    {
+      title: 'Building Design',
+      desc: 'Integrated building design services covering architectural coordination, structural planning, and functional space development to achieve efficient and reliable project outcomes.'
+    },
+    {
+      title: 'Engineering Design',
+      desc: 'Detailed engineering solutions for geotechnical, structural, and infrastructure projects with a focus on safety, constructability, and long-term performance.'
+    },
+    {
+      title: 'Cost Analysis and Value Engineering',
+      desc: 'Optimization of project costs through technical evaluation and value engineering approaches to achieve efficient, economical, and high-value design solutions.'
+    },
+    {
+      title: 'Building Information Modeling (BIM)',
+      desc: 'Implementation of BIM workflows for design coordination, project visualization, data integration, and improved collaboration throughout the project lifecycle.'
+    },
+    {
+      title: 'Retrofitting Design',
+      desc: 'Engineering assessment and strengthening solutions for existing structures to improve safety, performance, functionality, and service life in accordance with project requirements.'
+    }
+  ]"
+                :key="item.title"
               >
                 <div
-                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                  class="lift h-full rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
                 >
                   <div
                     class="w-10 h-10 rounded-xl bg-lime-100 text-lime-700 grid place-items-center"
                   >
                     🏗️
                   </div>
+
                   <p
                     class="mt-4 font-semibold text-slate-900"
-                    x-text="item"
+                    x-text="item.title"
+                  ></p>
+
+                  <p
+                    class="mt-3 text-sm leading-relaxed text-slate-600"
+                    x-text="item.desc"
                   ></p>
                 </div>
               </template>
@@ -882,19 +972,51 @@
               class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
               <template
-                x-for="item in ['In-situ Test','Laboratory Test','Deformation Observation','Geophysical Testing','Foundation Design','Earth Retaining Structure Design','Slope Stability','Ground Improvement Design']"
+                x-for="item in [
+      {
+        title: 'In-situ Test',
+        desc: 'Field investigation and in-situ testing services to evaluate soil and rock characteristics for accurate geotechnical analysis and engineering design.'
+      },
+      {
+        title: 'Laboratory Test',
+        desc: 'Comprehensive geotechnical laboratory testing to determine the physical and mechanical properties of soil and construction materials in accordance with engineering standards.'
+      },
+      {
+        title: 'Foundation Design',
+        desc: 'Design of shallow and deep foundation systems tailored to site conditions, structural requirements, and long-term performance considerations.'
+      },
+      {
+        title: 'Slope Stability',
+        desc: 'Slope stability analysis and mitigation design to manage landslide risks and ensure safe and sustainable slope performance.'
+      },
+      {
+        title: 'Ground Improvement',
+        desc: 'Engineering solutions to enhance soil properties and ground performance through appropriate ground improvement methods for challenging site conditions.'
+      },
+      {
+        title: 'Geo Hazard Assessment',
+        desc: 'Assessment and evaluation of geotechnical hazards, including landslides, erosion, and ground movement, to support risk-informed planning and infrastructure development.'
+      }
+    ]"
+                :key="item.title"
               >
                 <div
-                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                  class="lift h-full rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
                 >
                   <div
                     class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 grid place-items-center"
                   >
                     ⛰️
                   </div>
+
                   <p
                     class="mt-4 font-semibold text-slate-900"
-                    x-text="item"
+                    x-text="item.title"
+                  ></p>
+
+                  <p
+                    class="mt-3 text-sm leading-relaxed text-slate-600"
+                    x-text="item.desc"
                   ></p>
                 </div>
               </template>
@@ -978,19 +1100,35 @@
               class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
               <template
-                x-for="item in ['Building Energy Analysis','Facade Building Evaluation','Energy Efficiency Conservation Analysis','Daylight Analysis','Glare Analysis']"
+                x-for="item in [
+      {
+        title: 'Building Energy Analysis',
+        desc: 'Energy performance assessment to evaluate building efficiency, optimize energy consumption, and support sustainable building design strategies.'
+      },
+      {
+        title: 'Daylight and Lighting Analysis',
+        desc: 'Evaluation of natural and artificial lighting performance to improve visual comfort, energy efficiency, and overall building functionality.'
+      }
+    ]"
+                :key="item.title"
               >
                 <div
-                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                  class="lift h-full rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
                 >
                   <div
                     class="w-10 h-10 rounded-xl bg-green-100 text-green-700 grid place-items-center"
                   >
                     🌿
                   </div>
+
                   <p
                     class="mt-4 font-semibold text-slate-900"
-                    x-text="item"
+                    x-text="item.title"
+                  ></p>
+
+                  <p
+                    class="mt-3 text-sm leading-relaxed text-slate-600"
+                    x-text="item.desc"
                   ></p>
                 </div>
               </template>
@@ -1003,19 +1141,51 @@
               class="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
             >
               <template
-                x-for="item in ['Digital Construction BIM','Asset and Facility Management','Project Cost Estimation','Scheduling and Fabrication','Sustainability Project Calculation','Retrofitting Design with BIM']"
+                x-for="item in [
+      {
+        title: 'Digital Construction BIM',
+        desc: 'BIM-based digital construction services to improve design coordination, project visualization, and information management throughout the construction process.'
+      },
+      {
+        title: 'Asset and Facility Management',
+        desc: 'Digital asset and facility management solutions to support efficient operation, maintenance planning, and long-term asset performance.'
+      },
+      {
+        title: 'Project Cost Estimation',
+        desc: 'Accurate quantity take-off and cost estimation services to support budgeting, project planning, and financial control.'
+      },
+      {
+        title: 'Scheduling and Fabrication',
+        desc: 'Integrated scheduling and fabrication planning to improve construction efficiency, coordination, and project delivery.'
+      },
+      {
+        title: 'Sustainability Project Calculation',
+        desc: 'Technical evaluation and calculation services to support sustainable design targets, resource efficiency, and environmental performance.'
+      },
+      {
+        title: 'Retrofitting Design with BIM',
+        desc: 'BIM-based retrofitting design services for existing structures to improve coordination, visualization, and implementation accuracy during strengthening and rehabilitation works.'
+      }
+    ]"
+                :key="item.title"
               >
                 <div
-                  class="lift rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
+                  class="lift h-full rounded-2xl p-6 bg-white border border-slate-100 shadow-sm"
                 >
                   <div
                     class="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 grid place-items-center"
                   >
                     📐
                   </div>
+
                   <p
                     class="mt-4 font-semibold text-slate-900"
-                    x-text="item"
+                    x-text="item.title"
+                  ></p>
+
+                  <p
+                    class="mt-3 text-sm leading-relaxed text-slate-600"
+                    x-text="item.desc"
                   ></p>
                 </div>
               </template>
@@ -1051,58 +1221,94 @@
               class="rounded-2xl bg-slate-950 text-white px-6 py-5 text-center shadow-xl min-w-[240px]"
             >
               <p class="text-xs uppercase tracking-widest text-lime-300">
-                Top Leadership
+                Technical Advisor
               </p>
-              <p class="mt-1 font-bold text-lg">
-                Director / Principal Engineer
-              </p>
+
+              <p class="mt-1 font-bold text-lg">Ir. Muhrozi MS</p>
+
+              <div class="mt-3 flex justify-end">
+                <a
+                  href="#"
+                  class="group inline-flex items-center gap-1 text-[11px] font-semibold text-lime-300 hover:text-lime-200 transition"
+                >
+                  View Detail
+                  <span
+                    class="transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
+
           <div class="flex justify-center">
             <div class="w-px h-10 bg-slate-300"></div>
           </div>
+
           <!-- Middle -->
           <div class="flex justify-center">
             <div
               class="rounded-2xl bg-white border-2 border-lime-300 px-6 py-4 text-center shadow-md min-w-[240px]"
             >
               <p class="text-xs uppercase tracking-widest text-lime-700">
-                Project Lead
+                CEO / Chief Executive Officer
               </p>
-              <p class="mt-1 font-bold text-slate-900">Project Manager</p>
+
+              <p class="mt-1 font-bold text-slate-900">
+                Ir. Goji Pamungkas, M.T., IPM, ACPE
+              </p>
+
+              <div class="mt-3 flex justify-end">
+                <a
+                  href="#"
+                  class="group inline-flex items-center gap-1 text-[11px] font-semibold text-lime-700 hover:text-lime-900 transition"
+                >
+                  View Detail
+                  <span
+                    class="transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
+
           <div class="flex justify-center">
             <div class="w-px h-10 bg-slate-300"></div>
           </div>
-          <!-- Specialists -->
-          <div
-            x-data
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
-          >
-            <template
-              x-for="role in [
-          {n:'Geotechnical Engineer',i:'⛰️'},
-          {n:'Structure Engineer',i:'🏛️'},
-          {n:'BIM Specialist',i:'📐'},
-          {n:'Energy Analyst',i:'⚡'},
-          {n:'Inspector / Surveyor',i:'🔎'},
-          {n:'Administration & Support',i:'📋'}
-        ]"
+
+          <!-- Bottom -->
+          <div class="flex justify-center">
+            <div
+              class="rounded-2xl bg-white border-2 border-lime-300 px-6 py-4 text-center shadow-md min-w-[240px]"
             >
-              <div
-                class="lift rounded-2xl bg-white border border-slate-100 shadow-sm p-5 text-center"
-              >
-                <div
-                  class="w-11 h-11 rounded-xl bg-lime-50 grid place-items-center text-xl mx-auto"
-                  x-text="role.i"
-                ></div>
-                <p
-                  class="mt-3 font-semibold text-slate-900 text-sm"
-                  x-text="role.n"
-                ></p>
+              <p class="text-xs uppercase tracking-widest text-lime-700">
+                CTO / Chief Technology Officer
+              </p>
+
+              <p class="mt-1 font-bold text-slate-900">
+                Malik Maulana, S.TrT., M.T.
+              </p>
+
+              <div class="mt-3 flex justify-end">
+                <a
+                  href="#"
+                  class="group inline-flex items-center gap-1 text-[11px] font-semibold text-lime-700 hover:text-lime-900 transition"
+                >
+                  View Detail
+                  <span
+                    class="transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                </a>
               </div>
-            </template>
+            </div>
           </div>
         </div>
       </div>
@@ -1113,6 +1319,7 @@
 ============================================================ -->
     <section
       id="team"
+      x-data="{ modal: null }"
       class="section bg-gradient-to-b from-white to-lime-50/40"
     >
       <div class="max-w-7xl mx-auto px-5 lg:px-8">
@@ -1122,7 +1329,7 @@
           <div>
             <span
               class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200"
-              >Our People</span
+              >Our Team</span
             >
             <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
               Meet the team behind every project
@@ -1145,15 +1352,66 @@
                 loading="lazy"
               />
             </div>
+
             <div class="team-body">
               <p class="team-name">Ir. Muhrozi MS</p>
               <p class="team-role">Geotechnical Advisor</p>
-              <p class="team-desc">
-                Senior geotechnical professional with 35+ years of experience
-                across major toll road and infrastructure projects in
-                Indonesia. Expert in slope stability assessment and mitigation,
-                foundation engineering, and deep excavation design.
-              </p>
+
+              <div x-data="{ expanded: false }" class="team-desc-wrapper">
+                <p
+                  class="team-desc"
+                  :class="expanded ? 'team-desc-full' : 'team-desc-clamp'"
+                >
+                  Ir. Muhrozi MS is a senior geotechnical professional with more
+                  than 35 years of experience in geotechnical engineering and
+                  infrastructure development across Indonesia. Throughout his
+                  career, he has been actively involved in numerous major toll
+                  road projects, contributing extensive expertise in
+                  geotechnical investigation, design evaluation, and
+                  construction problem-solving. His core expertise includes
+                  slope stability assessment and mitigation, particularly in
+                  problematic soil conditions, as well as foundation engineering
+                  and deep excavation design. With strong technical judgment and
+                  decades of field experience, he provides strategic guidance in
+                  delivering safe, practical, and reliable engineering solutions
+                  for complex geotechnical challenges. As Geotechnical Advisor,
+                  he plays a key role in strengthening GFM’s technical
+                  excellence and ensuring that every project is approached with
+                  sound engineering principles, efficiency, and long-term
+                  performance in mind.
+                </p>
+
+                <div class="mt-3 flex items-center justify-between">
+                  <span
+                    role="button"
+                    tabindex="0"
+                    @click="expanded = !expanded"
+                    @keydown.enter="expanded = !expanded"
+                    class="cursor-pointer text-xs font-semibold text-blue-600 transition hover:text-blue-800"
+                    x-text="expanded ? 'Less' : 'More'"
+                  ></span>
+
+                  <a
+                    href="#"
+                    @click.prevent="modal = {
+    cat: 'geotech',
+    title: 'Geotechnical Advisor',
+    client: 'GFM',
+    year: '2026',
+    desc: 'Ir. Muhrozi MS is a senior geotechnical professional with more than 35 years of experience in geotechnical engineering and infrastructure development across Indonesia. His expertise includes geotechnical investigation, slope stability assessment, foundation engineering, deep excavation design, and construction problem-solving.'
+  }"
+                    class="group inline-flex items-center gap-1 text-xs font-semibold text-lime-700 transition hover:text-lime-900"
+                  >
+                    View Detail
+                    <span
+                      class="inline-block transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </a>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -1167,16 +1425,70 @@
                 loading="lazy"
               />
             </div>
+
             <div class="team-body">
               <p class="team-name">Ir. Goji Pamungkas, M.T., IPM, ACPE</p>
               <p class="team-role">Chief Executive Officer</p>
-              <p class="team-desc">
-                Civil engineering professional with 10+ years in engineering
-                consultancy, specializing in slope management, slope
-                reinforcement, and stabilization engineering. LARAM 2025
-                participant (The University of Hong Kong) with additional
-                expertise in Green Building practices.
-              </p>
+
+              <div x-data="{ expanded: false }" class="team-desc-wrapper">
+                <p
+                  class="team-desc"
+                  :class="expanded ? 'team-desc-full' : 'team-desc-clamp'"
+                >
+                  Ir. Goji Pamungkas is a civil engineering professional with
+                  more than 10 years of experience in engineering consultancy,
+                  specializing in slope management, slope reinforcement design,
+                  and stabilization engineering. He has been involved in various
+                  geotechnical and infrastructure projects, providing practical
+                  and reliable solutions for slope stability challenges in
+                  complex ground conditions. His professional expertise is
+                  strengthened by international exposure through participation
+                  in the 2025 LARAM Course at The University of Hong Kong, a
+                  globally recognized program in landslide risk assessment and
+                  mitigation. In addition to his geotechnical background, he has
+                  also completed professional training in Green Building
+                  practices, particularly in building energy analysis and
+                  lighting design, reflecting his commitment to sustainable and
+                  future-oriented engineering solutions. As CEO, he leads GFM
+                  with a strong focus on technical excellence, innovation, and
+                  client-oriented collaboration. By integrating engineering
+                  expertise, digital technology, and sustainable approaches, he
+                  is committed to delivering solutions that are not only
+                  technically sound, but also efficient, practical, and aligned
+                  with the long-term goals of clients and stakeholders.
+                </p>
+
+                <div class="mt-3 flex items-center justify-between">
+                  <span
+                    role="button"
+                    tabindex="0"
+                    @click="expanded = !expanded"
+                    @keydown.enter="expanded = !expanded"
+                    class="cursor-pointer text-xs font-semibold text-blue-600 transition hover:text-blue-800"
+                    x-text="expanded ? 'Less' : 'More'"
+                  ></span>
+
+                  <a
+                    href="#"
+                    @click.prevent="modal = {
+    cat: 'geotech',
+    title: 'Chief Executive Officer',
+    client: 'GFM',
+    year: '2026',
+    desc: 'Ir. Goji Pamungkas is a civil engineering professional with more than 10 years of experience in engineering consultancy, specializing in slope management, slope reinforcement design, and stabilization engineering. As CEO, he leads GFM with a strong focus on technical excellence, innovation, and client-oriented collaboration.'
+  }"
+                    class="group inline-flex items-center gap-1 text-xs font-semibold text-lime-700 transition hover:text-lime-900"
+                  >
+                    View Detail
+                    <span
+                      class="inline-block transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </a>
+                </div>
+              </div>
             </div>
           </article>
 
@@ -1190,18 +1502,149 @@
                 loading="lazy"
               />
             </div>
+
             <div class="team-body">
               <p class="team-name">Malik Maulana, S.TrT., M.T.</p>
               <p class="team-role">Chief Technology Officer</p>
-              <p class="team-desc">
-                Technology-driven engineer with 6+ years in the consulting
-                industry, specializing in Building Information Modeling (BIM)
-                and construction digitalization. Leads asset digitalization
-                and Digital Twin development for smarter, data-driven
-                infrastructure management.
-              </p>
+
+              <div x-data="{ expanded: false }" class="team-desc-wrapper">
+                <p
+                  class="team-desc"
+                  :class="expanded ? 'team-desc-full' : 'team-desc-clamp'"
+                >
+                  Malik Maulana is a technology-driven engineering professional
+                  with more than 6 years of experience in the consulting
+                  industry, specializing in Building Information Modeling (BIM)
+                  and construction digitalization. He has been actively involved
+                  in the development and implementation of BIM workflows to
+                  improve project coordination, data integration, and efficiency
+                  throughout the project lifecycle. His expertise extends to
+                  asset digitalization and Digital Twin development, where he
+                  leads the integration of digital technologies to support
+                  smarter infrastructure management and data-driven
+                  decision-making. Through a strong understanding of digital
+                  construction systems, he plays a key role in helping clients
+                  enhance collaboration, optimize asset performance, and improve
+                  long-term operational efficiency. As Chief Technology Officer,
+                  he oversees GFM’s digital innovation initiatives and drives
+                  the adoption of advanced technologies in engineering and
+                  construction practices. His leadership reflects GFM’s
+                  commitment to delivering modern, integrated, and future-ready
+                  solutions that align with the evolving needs of the industry
+                  and its clients.
+                </p>
+
+                <div class="mt-3 flex items-center justify-between">
+                  <span
+                    role="button"
+                    tabindex="0"
+                    @click="expanded = !expanded"
+                    @keydown.enter="expanded = !expanded"
+                    class="cursor-pointer text-xs font-semibold text-blue-600 transition hover:text-blue-800"
+                    x-text="expanded ? 'Less' : 'More'"
+                  ></span>
+
+                  <a
+                    href="#"
+                    @click.prevent="modal = {
+    cat: 'bim',
+    title: 'Chief Technology Officer',
+    client: 'GFM',
+    year: '2026',
+    desc: 'Malik Maulana is a technology-driven engineering professional with more than 6 years of experience in the consulting industry, specializing in Building Information Modeling, construction digitalization, asset digitalization, and Digital Twin development.'
+  }"
+                    class="group inline-flex items-center gap-1 text-xs font-semibold text-lime-700 transition hover:text-lime-900"
+                  >
+                    View Detail
+                    <span
+                      class="inline-block transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </a>
+                </div>
+              </div>
             </div>
           </article>
+        </div>
+
+        <!-- Modal -->
+        <div
+          x-show="modal"
+          x-transition.opacity
+          style="display: none"
+          @keydown.escape.window="modal=null"
+          class="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm grid place-items-center p-4"
+        >
+          <div
+            @click.outside="modal=null"
+            class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden"
+          >
+            <div
+              class="aspect-[16/8] bg-gradient-to-br from-slate-900 to-emerald-900 grid place-items-center text-white"
+            >
+              <span
+                class="text-6xl"
+                x-text="modal && (modal.cat==='geotech'?'⛰️':modal.cat==='slope'?'🏔️':modal.cat==='bim'?'🏗️':'🧪')"
+              ></span>
+            </div>
+
+            <div class="p-7">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p
+                    class="text-xs uppercase tracking-wider text-lime-700 font-semibold"
+                    x-text="modal?.cat"
+                  ></p>
+
+                  <h3
+                    class="mt-1 text-xl font-bold text-slate-900"
+                    x-text="modal?.title"
+                  ></h3>
+                </div>
+
+                <button
+                  @click="modal=null"
+                  aria-label="Close modal"
+                  class="w-9 h-9 rounded-full border border-slate-200 hover:bg-slate-50 grid place-items-center"
+                >
+                  ×
+                </button>
+              </div>
+
+              <div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm">
+                <div class="rounded-xl bg-slate-50 p-4">
+                  <p class="text-slate-500">Client</p>
+                  <p
+                    class="font-semibold text-slate-900"
+                    x-text="modal?.client"
+                  ></p>
+                </div>
+
+                <div class="rounded-xl bg-slate-50 p-4">
+                  <p class="text-slate-500">Year</p>
+                  <p
+                    class="font-semibold text-slate-900"
+                    x-text="modal?.year"
+                  ></p>
+                </div>
+              </div>
+
+              <p
+                class="mt-5 text-gray-600 leading-relaxed"
+                x-text="modal?.desc"
+              ></p>
+
+              <a
+                href="#contact"
+                @click="modal=null"
+                class="mt-6 inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-5 py-3 rounded-full"
+              >
+                Discuss a Similar Project →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1306,7 +1749,7 @@
           <div>
             <span
               class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
-              >Recent Work</span
+              >Our Project</span
             >
             <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
               Projects we’re proud of
@@ -1388,74 +1831,82 @@
         </div>
 
         <!-- Modal -->
-        <div
-          x-show="modal"
-          x-transition.opacity
-          style="display: none"
-          @keydown.escape.window="modal=null"
-          class="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm grid place-items-center p-4"
-        >
           <div
-            @click.outside="modal=null"
-            class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden"
+            x-show="modal"
+            x-transition.opacity
+            style="display: none"
+            @keydown.escape.window="modal=null"
+            class="fixed inset-0 z-[60] bg-slate-900/60 backdrop-blur-sm grid place-items-center p-4"
           >
             <div
-              class="aspect-[16/8] bg-gradient-to-br from-slate-900 to-emerald-900 grid place-items-center text-white"
+              @click.outside="modal=null"
+              class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden"
             >
-              <span
-                class="text-6xl"
-                x-text="modal && (modal.cat==='geotech'?'⛰️':modal.cat==='slope'?'🏔️':'🧪')"
-              ></span>
-            </div>
-            <div class="p-7">
-              <div class="flex items-start justify-between gap-4">
-                <div>
-                  <p
-                    class="text-xs uppercase tracking-wider text-lime-700 font-semibold"
-                    x-text="modal?.cat"
-                  ></p>
-                  <h3
-                    class="mt-1 text-xl font-bold text-slate-900"
-                    x-text="modal?.title"
-                  ></h3>
-                </div>
-                <button
-                  @click="modal=null"
-                  aria-label="Close modal"
-                  class="w-9 h-9 rounded-full border border-slate-200 hover:bg-slate-50 grid place-items-center"
-                >
-                  ✕
-                </button>
-              </div>
-              <div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm">
-                <div class="rounded-xl bg-slate-50 p-4">
-                  <p class="text-slate-500">Client</p>
-                  <p
-                    class="font-semibold text-slate-900"
-                    x-text="modal?.client"
-                  ></p>
-                </div>
-                <div class="rounded-xl bg-slate-50 p-4">
-                  <p class="text-slate-500">Year</p>
-                  <p
-                    class="font-semibold text-slate-900"
-                    x-text="modal?.year"
-                  ></p>
-                </div>
-              </div>
-              <p
-                class="mt-5 text-gray-600 leading-relaxed"
-                x-text="modal?.desc"
-              ></p>
-              <a
-                href="#contact"
-                @click="modal=null"
-                class="mt-6 inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-5 py-3 rounded-full"
-                >Discuss a Similar Project →</a
+              <div
+                class="aspect-[16/8] bg-gradient-to-br from-slate-900 to-emerald-900 grid place-items-center text-white"
               >
+                <span
+                  class="text-6xl"
+                  x-text="modal && (modal.cat==='geotech'?'⛰️':modal.cat==='slope'?'🏔️':'🧪')"
+                ></span>
+              </div>
+
+              <div class="p-7">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p
+                      class="text-xs uppercase tracking-wider text-lime-700 font-semibold"
+                      x-text="modal?.cat"
+                    ></p>
+
+                    <h3
+                      class="mt-1 text-xl font-bold text-slate-900"
+                      x-text="modal?.title"
+                    ></h3>
+                  </div>
+
+                  <button
+                    @click="modal=null"
+                    aria-label="Close modal"
+                    class="w-9 h-9 rounded-full border border-slate-200 hover:bg-slate-50 grid place-items-center"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm">
+                  <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-slate-500">Client</p>
+                    <p
+                      class="font-semibold text-slate-900"
+                      x-text="modal?.client"
+                    ></p>
+                  </div>
+
+                  <div class="rounded-xl bg-slate-50 p-4">
+                    <p class="text-slate-500">Year</p>
+                    <p
+                      class="font-semibold text-slate-900"
+                      x-text="modal?.year"
+                    ></p>
+                  </div>
+                </div>
+
+                <p
+                  class="mt-5 text-gray-600 leading-relaxed"
+                  x-text="modal?.desc"
+                ></p>
+
+                <a
+                  href="#contact"
+                  @click="modal=null"
+                  class="mt-6 inline-flex items-center gap-2 bg-lime-500 hover:bg-lime-600 text-slate-950 font-semibold px-5 py-3 rounded-full"
+                >
+                  Discuss a Similar Project →
+                </a>
+              </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
 
@@ -1470,7 +1921,7 @@
         <div class="text-center max-w-2xl mx-auto reveal">
           <span
             class="inline-block px-3 py-1 rounded-full bg-lime-50 text-lime-800 text-xs font-semibold uppercase tracking-wider border border-lime-200"
-            >Trusted By</span
+            >Our Client</span
           >
           <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-slate-900">
             Working alongside national contractors
@@ -1480,12 +1931,26 @@
         <div class="mt-10 overflow-hidden">
           <div x-data class="marquee items-center">
             <template
-              x-for="c in ['PT Jasamarga','PT Waskita Karya','PT Adhi Karya','PT Graha Survei Indonesia','PT Bangun Cipta','PT Kideco Jaya Agung','PT JTSB','Panca Karya KSO']"
+              x-for="item in [
+                {name: 'PT Jasamarga', img: 'assets/pt/jasa-marga.png'},
+                {name: 'PT Waskita Karya', img: 'assets/pt/wasita-karya.png'},
+                {name: 'PT Adhi Karya', img: 'assets/pt/adhi-karya.png'},
+                {name: 'PT Graha Survei Indonesia', img: 'assets/pt/graha-survei-indonesia.png'},
+                {name: 'PT Bangun Cipta', img: 'assets/pt/bangun-cipta.png'},
+                {name: 'PT Kideco Jaya Agung', img: 'assets/pt/kideco-jaya-agung.png'},
+                {name: 'PT JTSB', img: 'assets/pt/jtsb.png'},
+                {name: 'Panca Karya KSO', img: 'assets/pt/panca-karya.png'}
+              ]"
             >
               <div
-                class="shrink-0 px-8 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm font-bold text-slate-700 tracking-wide"
-                x-text="c"
-              ></div>
+                class="shrink-0 px-8 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm"
+              >
+                <img
+                  :src="item.img"
+                  :alt="item.name"
+                  class="h-12 object-contain"
+                />
+              </div>
             </template>
           </div>
         </div>
@@ -1737,7 +2202,7 @@
               class="w-12 h-12 rounded-xl bg-white p-1 ring-1 ring-white/15 inline-flex items-center justify-center shadow-sm overflow-hidden"
             >
               <img
-                src="assets/icons/company-gfm.jpeg"
+                src="assets/icons/company-gfm.png"
                 alt="GFM Consult logo"
                 class="w-full h-full object-contain"
               />
